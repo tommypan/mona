@@ -3,42 +3,18 @@ import { Vector2 } from "./Vector2.js";
 export class Transform {
 
   constructor() {
-    this.localPosition = false;
-    this.localRotation = false;
-    this.localScale =  false;
-    this._position = false;
-    this._rotation= false;
-    this._scale = false;
-    this._transLateMatrix = false;
-    this._rotationMatrix = false;
-    this._scaleMatrix = false;
+    this._localPosition = false;
+    this._localRotation = false;
+    this._localScale =  false;
 
-    var ANGLE = 0;
-// 将旋转图形所需的数据传输给定点着色器
-    var radian = Math.PI*ANGLE/180.0;//转化为弧度
-    var cosB = Math.cos(radian);
-    var sinB = Math.sin(radian);
-
-    this._rotationMatrix  = new Float32Array([
-      cosB, sinB, 0.0, 0.0,
-      -sinB, cosB, 0.0, 0.0,
-      0.0, 0.0, 1.0, 0.0,
-      0.0, 0.0, 0.0, 1.0
-    ]);
-
-    this._scaleMatrix = new Float32Array([
-      1, 0.0, 0.0, 0.0,
-      0.0, 1, 0.0, 0.0,
-      0.0, 0.0, 1, 0.0,
-      0.0, 0.0, 0.0, 1.0
-    ]);
+    this._transformMatrix = mat3.create();
   }
 
-  get position()
+  get localPosition()
   {
-    return this._position;
+    return this._localPosition;
   }
-  set position(value)
+  set localPosition(value)
   {
     if((value instanceof  Vector2)== false)
     {
@@ -46,50 +22,25 @@ export class Transform {
       return;
     }
 
-    let canvas = document.getElementById('canvas');
-    let width = canvas.width;
-    let height = canvas.height;
-    this._position = value;
-    this._transLateMatrix = new Float32Array([
-      1.0, 0.0, 0.0, 0.0,
-      0.0, 1.0, 0.0, 0.0,
-      0.0, 0.0, 1.0, 0.0,
-      2*value.x/width, 2*value.y/height, 0, 1.0
-    ]);
-
+    this._localPosition = value;
   }
 
-  //todo
-  get rotation()
+  get localRotation()
   {
-    return this._rotation;
+    return this._localRotation;
   }
 
-  set rotation(value)
+  set localRotation(value)
   {
-    this._rotation = value;
-
-
-    var ANGLE = 0;
-// 将旋转图形所需的数据传输给定点着色器
-    var radian = Math.PI*ANGLE/180.0;//转化为弧度
-    var cosB = Math.cos(radian);
-    var sinB = Math.sin(radian);
-
-    this._rotationMatrix  = new Float32Array([
-      cosB, sinB, 0.0, 0.0,
-      -sinB, cosB, 0.0, 0.0,
-      0.0, 0.0, 1.0, 0.0,
-      0.0, 0.0, 0.0, 1.0
-    ]);
+    this._localRotation = value;
   }
 
-  get scale()
+  get localScale()
   {
-    return this._scale;
+    return this._localScale;
   }
 
-  set scale(value)
+  set localScale(value)
   {
     if((value instanceof  Vector2)== false)
     {
@@ -97,27 +48,42 @@ export class Transform {
       return;
     }
 
-    this._scale = value;
-    this._scaleMatrix = new Float32Array([
-      value.x, 0.0, 0.0, 0.0,
-      0.0, value.y, 0.0, 0.0,
-      0.0, 0.0, 1, 0.0,
-      0.0, 0.0, 0.0, 1.0
-    ]);
+    this._localScale = value;
   }
 
   get transformMatrix()
   {
-    if(!this._transLateMatrix || !this._rotationMatrix || !this._scaleMatrix)
-    {
-      console.log("transformMatrix get error");
-      return;
-    }
+    mat3.identity(this._transformMatrix);
+    mat3.translate(this._transformMatrix,this._transformMatrix,this.localPosition.toArray());
+    mat3.rotate(this._transformMatrix,this._transformMatrix,this.localRotation);
+    mat3.scale(this._transformMatrix,this._transformMatrix,this.localScale.toArray());
+    var orthMatrix = mat3.create();
+    mat3.projection(orthMatrix,640,480);
+    var finalMatrix = mat3.create();
+    mat3.multiply(finalMatrix,orthMatrix,this._transformMatrix);
 
-    var finalMatrix = mat4.create()
-    mat4.multiply(finalMatrix,this._transLateMatrix,this._rotationMatrix);
-    mat4.multiply(finalMatrix,finalMatrix,this._scaleMatrix);
-    return finalMatrix;
+    //实现2，这种直接用mat4算，结果不用再转
+    //mat4.identity(this._transformMatrix);
+    //mat4.translate(this._transformMatrix,this._transformMatrix,this.localPosition.toArray3(0));
+    //mat4.rotateZ(this._transformMatrix,this._transformMatrix,this.localRotation);
+    //mat4.scale(this._transformMatrix,this._transformMatrix,this.localScale.toArray3(1));
+    //var orthMatrix = mat4.create();
+    //mat4.ortho(orthMatrix,0,640,480,0,-1,1);
+    //mat4.multiply(this._transformMatrix,orthMatrix,this._transformMatrix);
+    //return this._transformMatrix;
+
+    return this.convertToMat4(finalMatrix);
   }
 
+  convertToMat4(mat3)
+  {
+    var target = mat4.create();
+    target[0] = mat3[0];
+    target[1] = mat3[1];
+    target[4] = mat3[3];
+    target[5] = mat3[4];
+    target[12] = mat3[6];
+    target[13] = mat3[7];
+    return target;
+  }
 }

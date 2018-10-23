@@ -32,6 +32,9 @@ function drawScene(now) {
 function complte(image) {
   sprite = new Sprite(image,200,200);
   sprite.localPosition = new Vector2(50,0);
+  sprite.localScale = new Vector2(0.5,0.5);
+  sprite.localRotation = 50;
+
   var sprite2 = new Sprite(image,200,200);
   sprite2.localPosition = new Vector2(150,0)
   var text = new Text("demo",false,100,100);

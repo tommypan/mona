@@ -9,6 +9,7 @@ export class Stage extends  DisplayContainer{
 
     new GLSeetting(this.gl);
 
+    this.gl.viewport(0,0,canvas.width,canvas.height);
     setInterval(this.update.bind(this),200);
 
     }

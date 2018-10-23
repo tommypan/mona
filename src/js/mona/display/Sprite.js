@@ -69,8 +69,9 @@ export class Sprite extends Quad{
     var u_Sampler = gl.getUniformLocation(this._shaderProgram, 'u_Sampler');
 
 
-    var u_xformMatarix = gl.getUniformLocation(this._shaderProgram,'u_xformMatarix');
-    gl.uniformMatrix4fv(u_xformMatarix, false, this.TransformMatrix);
+    var mvpMatarix = gl.getUniformLocation(this._shaderProgram,'mvpMatarix');
+
+    gl.uniformMatrix4fv(mvpMatarix, false, this.TransformMatrix);
 
     //1.对纹理图像进行Y轴反转
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);

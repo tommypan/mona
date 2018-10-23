@@ -97,8 +97,8 @@ export class Text extends Quad{
     gl.useProgram(this._shaderProgram);
 
 
-    var u_xformMatarix = gl.getUniformLocation(this._shaderProgram,'u_xformMatarix');
-    gl.uniformMatrix4fv(u_xformMatarix, false, this.TransformMatrix);
+    var mvpMatarix = gl.getUniformLocation(this._shaderProgram,'mvpMatarix');
+    gl.uniformMatrix4fv(mvpMatarix, false, this.TransformMatrix);
 
     //1.对纹理图像进行Y轴反转
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
@@ -111,7 +111,6 @@ export class Text extends Quad{
     var u_Sampler = gl.getUniformLocation(this._shaderProgram,'u_Sampler');
     gl.uniform1i(u_Sampler, 0);
 
-    gl.uniformMatrix4fv(u_xformMatarix, false, this.TransformMatrix);
 
     //绘制矩形
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.vertextNum);

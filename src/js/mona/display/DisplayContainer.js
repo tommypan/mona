@@ -20,7 +20,7 @@ export class DisplayContainer
     this._transform = new Transform();
     this.localPosition = new Vector2(0,0);
     this.localRotation = 0;
-    this.localScale = new Vector2(0,0);
+    this.localScale = new Vector2(1,1);
     this.width = width;
     this.height = height;
     this._children = new Array();
@@ -156,21 +156,6 @@ export class DisplayContainer
       return;
     }
     this._transform.localPosition = value;
-    this._transform.position = this.LocalToGlobal(value);
-    this.MarkasDirty();
-  }
-
-  get position() {
-    return this._transform.position;
-  }
-  set position(value) {
-    if((value instanceof  Vector2) == false)
-    {
-      console.log("DisplayContainer set localPosition error");
-      return;
-    }
-    this._transform.localPosition = this.GlobalToLocal(value)
-    this._transform.position = value;
     this.MarkasDirty();
   }
 
