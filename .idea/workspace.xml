@@ -2,22 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dffc2cf7-d1e0-41cc-aa3c-51d2cf18a7a9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/js/mona/debug/Status.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/mona/display/BatchSprite.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/mona/utils/VertexData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/js/mona/utils/MathUtility.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/mainTest.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/display/Quad.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/Quad.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/display/Sprite.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/Sprite.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/mona.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/mona.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/mona/rendering/GLSeetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/rendering/GLSeetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/rendering/Stage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/rendering/Stage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/shader/simpleTexture-vext.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/shader/simpleTexture-vext.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/shader/text-vext.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/shader/text-vext.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/text/Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/text/Text.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/utils/Transform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/utils/Transform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/utils/Vector2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/utils/Vector2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/utils/webgl-utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/mona/utils/primitives.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/utils/primitives.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,23 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Sprite.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/mona/display/Sprite.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="73" column="56" lean-forward="true" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DisplayContainer.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DisplayContainer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+            <state relative-caret-position="88">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -55,11 +42,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Quad.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/mona/display/Quad.js">
+      <file leaf-file-name="webglUtils.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/mona/utils/webglUtils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+            <state relative-caret-position="418">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RenderSupport.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,26 +84,8 @@
       <file leaf-file-name="mat3.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../toji-gl-matrix-6866ae9/src/gl-matrix/mat3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9212">
-              <caret line="526" column="14" selection-start-line="526" selection-start-column="10" selection-end-line="526" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mat4.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../toji-gl-matrix-6866ae9/src/gl-matrix/mat4.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="385" column="5" selection-start-line="385" selection-start-column="2" selection-end-line="385" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Transform.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Transform.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="-94">
+              <caret line="196" column="9" selection-start-line="196" selection-start-column="3" selection-end-line="196" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -95,19 +94,16 @@
         <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Vector2.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+              <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Text.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/mona/text/Text.js">
+      <file leaf-file-name="Transform.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Transform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="100" column="21" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="22">
+              <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -115,11 +111,20 @@
       <file leaf-file-name="mona.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/mona/mona.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+            <state relative-caret-position="629">
+              <caret line="52" column="48" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainTestText.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/mainTestText.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="273" column="22" lean-forward="true" selection-start-line="273" selection-start-column="22" selection-end-line="273" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -128,13 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>this.image</find>
-      <find>this.MarkasDirty();</find>
-      <find>testNum</find>
-      <find>MarkasDirty()</find>
-      <find>gl.clear</find>
-      <find>clear</find>
-      <find>makeTextCanvas</find>
       <find>_uniformDirty</find>
       <find>_attributeDirty</find>
       <find>Quaternion</find>
@@ -158,6 +156,13 @@
       <find>translate</find>
       <find>multiply</find>
       <find>_transformMatrix</find>
+      <find>clone</find>
+      <find>_shaderProgram</find>
+      <find>rotate</find>
+      <find>identity</find>
+      <find>mu</find>
+      <find>transl</find>
+      <find>invert</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,7 +171,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/js/main.js" />
         <option value="$PROJECT_DIR$/src/js/mainTestTexture.js" />
         <option value="$PROJECT_DIR$/src/js/mainTestText.js" />
         <option value="$PROJECT_DIR$/src/js/mona/display/Transform.js" />
@@ -177,30 +181,33 @@
         <option value="$PROJECT_DIR$/src/js/require.js" />
         <option value="$PROJECT_DIR$/src/js/mona/utils/Quaternion.js" />
         <option value="$PROJECT_DIR$/src/js/mona/shader/Shader.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/rendering/GLSeetting.js" />
         <option value="$PROJECT_DIR$/src/js/mona/utils/webglUtils.js" />
         <option value="$PROJECT_DIR$/src/js/mona/shader/text-frag.glsl" />
         <option value="$PROJECT_DIR$/src/js/mona/text/TextFormat.js" />
         <option value="$PROJECT_DIR$/src/js/mona/shader/ShaderUtility.js" />
-        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/js/mona/events/EventDefine.js" />
         <option value="$PROJECT_DIR$/src/js/mona/loader/Loader.js" />
         <option value="$PROJECT_DIR$/src/js/mona/events/Event.js" />
         <option value="$PROJECT_DIR$/src/js/mona/debug/Status.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/rendering/Stage.js" />
         <option value="$PROJECT_DIR$/src/js/mona/display/BatchSprite.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js" />
         <option value="$PROJECT_DIR$/src/js/mona/utils/VertexData.js" />
         <option value="$PROJECT_DIR$/src/js/mona/display/Quad.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/shader/text-vext.glsl" />
-        <option value="$PROJECT_DIR$/src/js/mona/shader/simpleTexture-vext.glsl" />
-        <option value="$PROJECT_DIR$/../toji-gl-matrix-6866ae9/src/gl-matrix/mat4.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/display/Sprite.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/text/Text.js" />
         <option value="$PROJECT_DIR$/src/js/mona/utils/Vector2.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" />
+        <option value="$PROJECT_DIR$/../toji-gl-matrix-6866ae9/src/gl-matrix/mat4.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/shader/simpleTexture-vext.glsl" />
+        <option value="$PROJECT_DIR$/src/js/mona/shader/text-vext.glsl" />
+        <option value="$PROJECT_DIR$/src/js/mona/rendering/GLSeetting.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/text/Text.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/rendering/Stage.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/display/Sprite.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/utils/math.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/utils/MathUtility.js" />
         <option value="$PROJECT_DIR$/src/js/mona/utils/Transform.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js" />
+        <option value="$PROJECT_DIR$/src/js/main.js" />
+        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/js/mona/mona.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" />
       </list>
     </option>
   </component>
@@ -223,10 +230,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="193" />
-    <option name="y" value="682" />
-    <option name="width" value="2303" />
-    <option name="height" value="1379" />
+    <option name="x" value="192" />
+    <option name="y" value="681" />
+    <option name="width" value="2304" />
+    <option name="height" value="1380" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -234,6 +241,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -325,7 +333,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -394,27 +401,29 @@
       <workItem from="1539832109226" duration="26336000" />
       <workItem from="1539916518087" duration="51984000" />
       <workItem from="1540219234151" duration="3104000" />
-      <workItem from="1540258994566" duration="21120000" />
+      <workItem from="1540258994566" duration="22518000" />
+      <workItem from="1540345957795" duration="22551000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167627000" />
+    <option name="totallyTimeSpent" value="191576000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1551" height="935" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" order="2" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22511385" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32961586" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Gulp" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22251138" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3287841" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39900866" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -423,7 +432,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32961586" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,9 +449,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/js/mainTest.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/mona.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -496,13 +501,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/webgl-utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="381" column="33" selection-start-line="381" selection-start-column="24" selection-end-line="381" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/webgl-utils.js" />
     <entry file="file://$PROJECT_DIR$/src/js/mona/shader/ShaderUtility.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -514,13 +513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -546,27 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/webglUtils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mainTestText.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="279" column="39" selection-start-line="279" selection-start-column="30" selection-end-line="279" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mainTest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
@@ -588,20 +559,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="29" column="121" lean-forward="true" selection-start-line="29" selection-start-column="121" selection-end-line="29" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../toji-gl-matrix-6866ae9/dist/gl-matrix.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8059">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-8059" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/debug/Status.js">
@@ -618,48 +578,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/rendering/GLSeetting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/utils/gl-matrix-min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="27" column="11511" selection-start-line="27" selection-start-column="11503" selection-end-line="27" selection-end-column="11511" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/rendering/Stage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="37" lean-forward="true" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/shader/simpleTexture-vext.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/shader/text-vext.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -677,58 +599,148 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/text/Text.js">
+    <entry file="file://$PROJECT_DIR$/../toji-gl-matrix-6866ae9/src/gl-matrix/mat4.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="100" column="21" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/display/Sprite.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="73" column="56" lean-forward="true" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../toji-gl-matrix-6866ae9/src/gl-matrix/mat3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9212">
-          <caret line="526" column="14" selection-start-line="526" selection-start-column="10" selection-end-line="526" selection-end-column="14" />
+        <state relative-caret-position="425">
+          <caret line="392" column="45" selection-start-line="392" selection-start-column="45" selection-end-line="392" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/display/Quad.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
-          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../toji-gl-matrix-6866ae9/src/gl-matrix/mat4.js">
+    <entry file="file://$PROJECT_DIR$/src/js/mona/shader/simpleTexture-vext.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="385" column="5" selection-start-line="385" selection-start-column="2" selection-end-line="385" selection-end-column="5" />
+        <state relative-caret-position="154">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/shader/text-vext.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/rendering/GLSeetting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/text/Text.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1549">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/rendering/Stage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/display/Sprite.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/MathUtility.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" selection-start-column="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mainTest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mainTestText.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="273" column="22" lean-forward="true" selection-start-line="273" selection-start-column="22" selection-end-line="273" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Vector2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/webglUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../toji-gl-matrix-6866ae9/src/gl-matrix/mat3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-94">
+          <caret line="196" column="9" selection-start-line="196" selection-start-column="3" selection-end-line="196" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Transform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/mona.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+        <state relative-caret-position="629">
+          <caret line="52" column="48" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
@@ -737,18 +749,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        <state relative-caret-position="88">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Transform.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>

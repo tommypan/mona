@@ -1,7 +1,9 @@
 import { Transform } from "../utils/Transform.js";
 import {Vector2} from "../utils/Vector2.js";
+import {RenderSupport} from "../rendering/RenderSupport.js";
 
 //默认中心点为左上角
+//任何可以渲染的物体都有容器功能，下面都可以有子节点
 export class DisplayContainer
 {
 
@@ -26,6 +28,7 @@ export class DisplayContainer
     this._children = new Array();
     this._shader = false;
     this.isDirty = false;
+    this._shaderProgram = false;
   }
 
   AddChild(child)
@@ -73,18 +76,16 @@ export class DisplayContainer
       return new Vector2(0,0);
     }
 
-    //todo 没有考虑旋转
-    if(this._parent)
+    if(!this.root)
     {
-      let x = this._parent.position.x + this._transform.scale.x * point.x;
-      let y = this._parent.position.y + this._transform.scale.y * point.y;
-      return new Vector2(x,y);
-    }else
-    {
+      console.log("DisplayContainer LocalToGlobal error. not add to stage");
       return new Vector2(0,0);
     }
 
-
+    var result = mat3.create();
+    let transformationMatrix = this.GetTransformMatrix2Target(this.root);
+    mat3.translate(result,transformationMatrix,point.toArray3(0));
+    return new Vector2(result[6],result[7]);
   }
 
   GlobalToLocal(point)
@@ -95,16 +96,83 @@ export class DisplayContainer
       return;
     }
 
-    //todo 没有考虑旋转
-    if(this._parent)
+    if(!this.root)
     {
-      let x = point.x - (this._parent.position.x + this._transform.scale.x);
-      let y = point.y - (this._parent.position.y + this._transform.scale.y);
-      return new Vector2(x,y);
-    }else
-    {
+      console.log("DisplayContainer GlobalToLocal error. not add to stage");
       return new Vector2(0,0);
     }
+
+    var result = mat3.create();
+    let transformationMatrix = this.GetTransformMatrix2Target(this.root);
+    mat3.invert(transformationMatrix,transformationMatrix);
+    mat3.translate(result,transformationMatrix,point.toArray3(0));
+    return new Vector2(result[6],result[7]);
+  }
+
+  GetTransformMatrix2Target(targetObject)
+  {
+    var transformMatrix = mat3.create();
+    if((targetObject instanceof  DisplayContainer) == false)
+    {
+      console.log("DisplayContainer GetTransformMatrix2Target error");
+      return transformMatrix;
+    }
+
+    var curentObject = this;
+
+    if(targetObject == this)
+    {
+      return mat3.identity(transformMatrix);
+    }else if(targetObject == this.parent)
+    {
+      return this.TransformMatrix;
+    }else if(targetObject == this.root || targetObject == this.top)
+    {
+      curentObject = this;
+      let top = this.top;
+      while (curentObject.parent != top)
+      {
+        mat3.multiply(transformMatrix,curentObject.TransformMatrix,transformMatrix);
+        curentObject = curentObject.parent;
+      }
+      mat3.multiply(transformMatrix,curentObject.TransformMatrix,transformMatrix);
+      return transformMatrix;
+    }
+
+    //如果是渲染树当中的某个节点
+    var parentList = [];
+    curentObject = this;
+    while (curentObject.parent)
+    {
+      parentList[parentList.length] = curentObject.parent;
+      curentObject = this.parent;
+    }
+    if(parentList.indexOf(targetObject) == -1)
+    {
+      console.log("DisplayContainer GetTransformMatrix2Target error. this not connect to target");
+      return mat3.identity(transformMatrix);
+    }
+
+
+    curentObject = this;
+    while (curentObject != targetObject)
+    {
+      mat3.multiply(transformMatrix,transformMatrix,this.TransformMatrix);
+      curentObject = this.parent;
+    }
+
+    return transformMatrix;
+  }
+
+  //此渲染树的跟.不一定是stage
+  get top()
+  {
+    var result = this;
+    while (result.parent)
+    {
+      result = result.parent;
+    }
+    return result;
   }
 
   get width() {
@@ -182,8 +250,6 @@ export class DisplayContainer
       return;
     }
     this._transform.localScale = value;
-    //todo
-    this._transform.scale = new Vector2(1,1);
     this.MarkasDirty();
   }
 
@@ -218,14 +284,30 @@ export class DisplayContainer
   //unifonm参数发生变化
   _vFillUniform()
   {
+    if(!this._shaderProgram)
+    {
+      return;
+    }
 
+    let gl = this.gl;
+    gl.useProgram(this._shaderProgram);
+
+    var mvpMatrix = gl.getUniformLocation(this._shaderProgram,'mvpMatrix');
+    gl.uniformMatrix4fv(mvpMatrix, false, RenderSupport.mvpMatrix);
   }
 
   Render()
   {
-      this._vFillBuffer();
+    this._vFillBuffer();
 
-      this._vFillUniform();
+    this._vFillUniform();
+
+    for ( let i = 0; i <this.Children.length; i++){
+      RenderSupport.PushMatrix();
+      RenderSupport.TransformMatrix(this.Children[i]);
+      this.Children[i].Render();
+      RenderSupport.PopMatrix();
+    }
   }
 
 }

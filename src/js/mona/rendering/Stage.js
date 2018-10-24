@@ -1,5 +1,6 @@
 import { DisplayContainer } from "../display/DisplayContainer.js";
 import { GLSeetting } from  "./GLSeetting.js";
+import {RenderSupport} from "./RenderSupport.js";
 
 export class Stage extends  DisplayContainer{
   constructor(){
@@ -7,9 +8,9 @@ export class Stage extends  DisplayContainer{
     super(canvas.width,canvas.height);
     this._root = this;
 
-    new GLSeetting(this.gl);
+    new GLSeetting(this.gl,canvas.width,canvas.height);
 
-    this.gl.viewport(0,0,canvas.width,canvas.height);
+
     setInterval(this.update.bind(this),200);
 
     }
@@ -24,13 +25,10 @@ export class Stage extends  DisplayContainer{
     updateDisplayList()
     {
 
+      RenderSupport.ClearMatrix()
       if(this.isDirty)
       {
-        for ( let i = 0; i <this.Children.length; i++){
-          this.Children[i].Render();
-          this.Children[i].isDirty = false;
-        }
-
+        this.Render();
         this.isDirty = false;
       }
 

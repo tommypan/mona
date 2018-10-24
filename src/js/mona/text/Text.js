@@ -15,7 +15,6 @@ export class Text extends Quad{
     this._shader = new Shader(this.gl,"js/mona/shader/text-vext.glsl","js/mona/shader/text-frag.glsl",this.onShaderInitComplete.bind(this));
     this._content = content;
 
-    this._shaderProgram = false;
     this.makeTextCanvas(100,26);
   }
 
@@ -92,13 +91,9 @@ export class Text extends Quad{
   //unifonm参数发生变化
   _vFillUniform()
   {
+    super._vFillUniform();
 
     let gl = this.gl;
-    gl.useProgram(this._shaderProgram);
-
-
-    var mvpMatarix = gl.getUniformLocation(this._shaderProgram,'mvpMatarix');
-    gl.uniformMatrix4fv(mvpMatarix, false, this.TransformMatrix);
 
     //1.对纹理图像进行Y轴反转
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);

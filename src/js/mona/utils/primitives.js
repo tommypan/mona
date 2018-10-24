@@ -37,7 +37,7 @@
 (function(root, factory) {  // eslint-disable-line
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['./webgl-utils', './3d-math'], factory);
+    define(['./webgl-utils', './3d-mathUtility'], factory);
   } else {
     // Browser globals
     root.primitives = factory.call(root);

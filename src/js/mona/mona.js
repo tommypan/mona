@@ -31,20 +31,25 @@ function drawScene(now) {
 
 function complte(image) {
   sprite = new Sprite(image,200,200);
-  sprite.localPosition = new Vector2(50,0);
-  sprite.localScale = new Vector2(0.5,0.5);
-  sprite.localRotation = 50;
-
+  sprite.localPosition = new Vector2(5,5);
   var sprite2 = new Sprite(image,200,200);
   sprite2.localPosition = new Vector2(150,0)
   var text = new Text("demo",false,100,100);
   var text2 = new Text("hello",false,100,100);
   text2.localPosition = new Vector2(50,0);
   stage = new Stage();
-  stage.AddChild(sprite);
   stage.AddChild(sprite2);
+  stage.AddChild(sprite);
   stage.AddChild(text);
   stage.AddChild(text2);
 
+  var smallSprite = new Sprite(image,200,200);
+  smallSprite.localPosition = new Vector2(50,0);
+  smallSprite.localScale = new Vector2(0.5,0.5);
+  //smallSprite.localRotation = 45;
+  sprite.AddChild(smallSprite);
+
+  smallSprite.LocalToGlobal(new Vector2(110,0));
+  smallSprite.GlobalToLocal(new Vector2(110,5));
   requestAnimationFrame(drawScene);
 }

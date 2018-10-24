@@ -1,4 +1,5 @@
 import { Vector2 } from "./Vector2.js";
+import {MathUtility} from "./MathUtility.js";
 
 export class Transform {
 
@@ -54,13 +55,15 @@ export class Transform {
   get transformMatrix()
   {
     mat3.identity(this._transformMatrix);
+
     mat3.translate(this._transformMatrix,this._transformMatrix,this.localPosition.toArray());
-    mat3.rotate(this._transformMatrix,this._transformMatrix,this.localRotation);
+    mat3.rotate(this._transformMatrix,this._transformMatrix,MathUtility.degToRad(this.localRotation));
     mat3.scale(this._transformMatrix,this._transformMatrix,this.localScale.toArray());
-    var orthMatrix = mat3.create();
-    mat3.projection(orthMatrix,640,480);
-    var finalMatrix = mat3.create();
-    mat3.multiply(finalMatrix,orthMatrix,this._transformMatrix);
+
+    // var projectionMatrix = mat3.create();
+    // mat3.projection(projectionMatrix,640,480);
+    // var finalMatrix = mat3.create();
+    // mat3.multiply(finalMatrix,projectionMatrix,this._transformMatrix);
 
     //实现2，这种直接用mat4算，结果不用再转
     //mat4.identity(this._transformMatrix);
@@ -72,18 +75,6 @@ export class Transform {
     //mat4.multiply(this._transformMatrix,orthMatrix,this._transformMatrix);
     //return this._transformMatrix;
 
-    return this.convertToMat4(finalMatrix);
-  }
-
-  convertToMat4(mat3)
-  {
-    var target = mat4.create();
-    target[0] = mat3[0];
-    target[1] = mat3[1];
-    target[4] = mat3[3];
-    target[5] = mat3[4];
-    target[12] = mat3[6];
-    target[13] = mat3[7];
-    return target;
+    return this._transformMatrix;
   }
 }

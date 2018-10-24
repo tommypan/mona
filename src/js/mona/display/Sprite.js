@@ -7,7 +7,6 @@ export class Sprite extends Quad{
     super(width,height);
     this._shader = new Shader(this.gl,"js/mona/shader/simpleTexture-vext.glsl","js/mona/shader/simpleTexture-frag.glsl",this.onShaderInitComplete.bind(this));
     this._texture = texture;
-    this._shaderProgram = false;
   }
 
   onShaderInitComplete(shaderProgram)
@@ -61,17 +60,13 @@ export class Sprite extends Quad{
   //unifonm参数发生变化
   _vFillUniform()
   {
+    super._vFillUniform();
+
     let gl = this.gl;
-    gl.useProgram(this._shaderProgram);
     //创建纹理对象
     var texture = gl.createTexture();
     //获取u_Sampler的存储位置
     var u_Sampler = gl.getUniformLocation(this._shaderProgram, 'u_Sampler');
-
-
-    var mvpMatarix = gl.getUniformLocation(this._shaderProgram,'mvpMatarix');
-
-    gl.uniformMatrix4fv(mvpMatarix, false, this.TransformMatrix);
 
     //1.对纹理图像进行Y轴反转
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
