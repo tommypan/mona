@@ -193,3 +193,6 @@ gulp.task('build', (done) => {
 });
 
 gulp.task('default', ['build']);
+gulp.task('dev', () => {
+  gulp.watch(`${dirs.src}/**/*`, ['build']);
+});

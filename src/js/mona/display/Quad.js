@@ -1,6 +1,6 @@
-import { DisplayContainer } from "./DisplayContainer.js";
+import {DisplayObject} from "./DisplayObject.js";
 
-export class Quad extends DisplayContainer{
+export class Quad extends DisplayObject{
 
   constructor(width,height){
     super(width,height);

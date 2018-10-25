@@ -49,6 +49,7 @@
   "license": "MIT",
   "name": "html5-boilerplate",
   "scripts": {
+    "dev": "gulp dev",
     "build": "gulp build",
     "test": "gulp archive && mocha --require babel-core/register --reporter spec --timeout 5000"
   },

@@ -42,14 +42,14 @@ function complte(image) {
   stage.AddChild(sprite);
   stage.AddChild(text);
   stage.AddChild(text2);
-
-  var smallSprite = new Sprite(image,200,200);
-  smallSprite.localPosition = new Vector2(50,0);
-  smallSprite.localScale = new Vector2(0.5,0.5);
-  //smallSprite.localRotation = 45;
-  sprite.AddChild(smallSprite);
-
-  smallSprite.LocalToGlobal(new Vector2(110,0));
-  smallSprite.GlobalToLocal(new Vector2(110,5));
-  requestAnimationFrame(drawScene);
+  //
+  // var smallSprite = new Sprite(image,200,200);
+  // smallSprite.localPosition = new Vector2(50,0);
+  // smallSprite.localScale = new Vector2(0.5,0.5);
+  // //smallSprite.localRotation = 45;
+  // sprite.AddChild(smallSprite);
+  //
+  // smallSprite.LocalToGlobal(new Vector2(110,0));
+  // smallSprite.GlobalToLocal(new Vector2(110,5));
+  // requestAnimationFrame(drawScene);
 }
