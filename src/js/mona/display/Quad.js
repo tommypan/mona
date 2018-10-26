@@ -1,27 +1,37 @@
 import {DisplayObject} from "./DisplayObject.js";
+import {VertexData} from "../utils/VertexData.js";
 
 export class Quad extends DisplayObject{
 
   constructor(width,height){
     super(width,height);
-    this._vertices = new Float32Array([ //readyonly
-      0.0,  0.0,   0.0, 1.0,
-      -0.0, -0.0,   0.0, 0.0,
-      0.0,  0.0,   1.0, 1.0,
-      0.0, -0.0,   1.0, 0.0
-    ]);
-    this.vertextNum = 4;
   }
 
 
   _vFillVertices()
   {
 
-    this._vertices = new Float32Array([
-      0,  0,   0.0, 1.0, //左上
-      0, this.height,   0.0, 0.0,//左下
-      this.width,  0,   1.0, 1.0,//右上
-      this.width, this.height,   1.0, 0.0//右下
-    ]);
+    if(!this.vertextData)
+    {
+      this.vertextData = new VertexData();
+    }
+
+    this.vertextData.SetVertextPosition(0,0,0);
+    this.vertextData.SetTextureCoords(0,0,1);
+
+    this.vertextData.SetVertextPosition(1,0,this.height);
+    this.vertextData.SetTextureCoords(1,0,0);
+
+    this.vertextData.SetVertextPosition(2,this.width,0);
+    this.vertextData.SetTextureCoords(2,1,1);
+
+    this.vertextData.SetVertextPosition(3,this.width,this.height);
+    this.vertextData.SetTextureCoords(3,1,0);
+
+  }
+
+  ExpandVertextToBatch()
+  {
+    this.vertextData.ExpandVertextToBatch();
   }
 }

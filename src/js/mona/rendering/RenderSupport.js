@@ -1,6 +1,6 @@
 import {GLSeetting} from "./GLSeetting.js";
-import {DisplayContainer} from "../display/DisplayContainer.js";
 import {MathUtility} from "../utils/MathUtility.js";
+import {DisplayObject} from "../display/DisplayObject.js";
 
 export class RenderSupport {
   constructor() {
@@ -15,7 +15,7 @@ export class RenderSupport {
 
   static TransformMatrix(child)
   {
-    if((child instanceof  DisplayContainer) == false)
+    if((child instanceof  DisplayObject) == false)
     {
       console.log("TransformMatrix child error");
       return;

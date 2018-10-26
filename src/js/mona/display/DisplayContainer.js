@@ -1,15 +1,14 @@
 import {DisplayObject} from "./DisplayObject.js";
 import {RenderSupport} from "../rendering/RenderSupport.js";
 
-//默认中心点为左上角
-//任何可以渲染的物体都有容器功能，下面都可以有子节点
+
+//有容器功能，下面都可以有子节点
 export class DisplayContainer extends DisplayObject
 {
 
   constructor(width,height)
   {
     super(width,height);
-
     this._children = new Array();
 
   }

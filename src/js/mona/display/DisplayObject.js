@@ -1,11 +1,10 @@
-import { Transform } from "../utils/Transform.js";
 import {Vector2} from "../utils/Vector2.js";
 import {RenderSupport} from "../rendering/RenderSupport.js";
+import {Transform} from "../utils/Transform.js";
+import {Status} from "../debug/Status.js";
 
 //默认中心点为左上角
-//任何可以渲染的物体都有容器功能，下面都可以有子节点
-export class DisplayObject
-{
+export class DisplayObject {
 
   constructor(width,height)
   {
@@ -28,6 +27,7 @@ export class DisplayObject
     this._shader = false;
     this.isDirty = false;
     this._shaderProgram = false;
+
   }
 
 
@@ -267,7 +267,6 @@ export class DisplayObject
     this._vFillBuffer();
 
     this._vFillUniform();
-
+    Status.AddDrawCount();
   }
-
-}
+ }

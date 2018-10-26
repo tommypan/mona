@@ -1,6 +1,7 @@
 import { DisplayContainer } from "../display/DisplayContainer.js";
 import { GLSeetting } from  "./GLSeetting.js";
 import {RenderSupport} from "./RenderSupport.js";
+import {Status} from "../debug/Status.js";
 
 export class Stage extends  DisplayContainer{
   constructor(){
@@ -17,14 +18,13 @@ export class Stage extends  DisplayContainer{
 
     update()
     {
-      //以后这里有一大堆update
       this.updateDisplayList();
-      this.updateTransform();
     }
 
     updateDisplayList()
     {
 
+      Status.ResetDrawCount();
       RenderSupport.ClearMatrix()
       if(this.isDirty)
       {
@@ -32,11 +32,6 @@ export class Stage extends  DisplayContainer{
         this.isDirty = false;
       }
 
-
-    }
-
-    updateTransform()
-    {
 
     }
 }

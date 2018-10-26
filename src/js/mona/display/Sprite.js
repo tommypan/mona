@@ -30,9 +30,9 @@ export class Sprite extends Quad{
     //将缓冲区对象绑定到目标
     gl.bindBuffer(gl.ARRAY_BUFFER,vertexBuffer);
     //向缓冲区写入数据
-    gl.bufferData(gl.ARRAY_BUFFER,this._vertices,gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER,this.vertextData.vertices,gl.STATIC_DRAW);
 
-    var FSIZE = this._vertices.BYTES_PER_ELEMENT;
+    var FSIZE = this.vertextData.BYTES_PER_ELEMENT;
 
     //获取坐标点
     var a_Position = gl.getAttribLocation(this._shaderProgram, "a_Position");
@@ -86,7 +86,7 @@ export class Sprite extends Quad{
     //gl.clear(gl.COLOR_BUFFER_BIT);
 
     //绘制矩形
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.vertextNum);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.vertextData.vertextNum);
   }
 
 
