@@ -13,6 +13,7 @@ export class RenderSupport {
     RenderSupport.modelViewMatrixStack[RenderSupport.stackIndex] = RenderSupport.modelViewMatrix;
   }
 
+  //计算当前节点的modelview变换矩阵
   static TransformMatrix(child)
   {
     if((child instanceof  DisplayObject) == false)

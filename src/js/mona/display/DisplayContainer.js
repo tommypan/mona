@@ -25,7 +25,6 @@ export class DisplayContainer extends DisplayObject
     child._root = this.root;
     this._children.push(child);
     child._vFillVertices();
-    child.UpdateGlobalTransform();
     this.MarkasDirty();
   }
 
@@ -41,7 +40,6 @@ export class DisplayContainer extends DisplayObject
     child._parent = false;
     child._root = false;
     this._children.splice( this._children.indexOf( child ), 1 );
-    child.UpdateGlobalTransform();
   }
 
 
@@ -53,11 +51,16 @@ export class DisplayContainer extends DisplayObject
   Render()
   {
 
-    for ( let i = 0; i <this.Children.length; i++){
-      RenderSupport.PushMatrix();
-      RenderSupport.TransformMatrix(this.Children[i]);
-      this.Children[i].Render();
-      RenderSupport.PopMatrix();
+    for ( let i = 0; i <this.Children.length; i++)
+    {
+      if(this.Children[i].renderReady)
+      {
+        RenderSupport.PushMatrix();
+        RenderSupport.TransformMatrix(this.Children[i]);
+        this.Children[i].Render();
+        RenderSupport.PopMatrix();
+      }
+
     }
   }
 

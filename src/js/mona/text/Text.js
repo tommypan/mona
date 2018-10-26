@@ -20,11 +20,8 @@ export class Text extends Quad{
 
   onShaderInitComplete(shaderProgram)
   {
-    //todo 这块还要好好的抽象
-    //1.1怎么产生indices
-    //1.2z怎么设置属性
-    //1.3怎么绑定缓冲区
     this._shaderProgram = shaderProgram;
+    this.renderReady = true;
   }
 
   // 将文字放在画布中间

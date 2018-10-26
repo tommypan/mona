@@ -1,5 +1,6 @@
 export class MathUtility {
 
+  //将mat3转化为shader可以用的mat4
   static convertToMat4(mat3)
   {
     var target = mat4.create();
@@ -12,6 +13,7 @@ export class MathUtility {
     return target;
   }
 
+  //角度转弧度
   static degToRad(deg)
   {
     return deg*(Math.PI/180);

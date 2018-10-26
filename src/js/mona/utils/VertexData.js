@@ -43,6 +43,7 @@ export class VertexData
     return this._vertices.length / this.VERTEXT_PER_ELEMENT_COUNT;
   }
 
+  //扩充quad到可以支持batch渲染，通过退化三角形来实现不同三角带的断开
   ExpandVertextToBatch()
   {
     var oldVertext = this._vertices;
@@ -66,6 +67,7 @@ export class VertexData
       this._vertices[i] = oldVertext[i - this.VERTEXT_PER_ELEMENT_COUNT];
     }
   }
+
   //ID从0开始
   SetVertextPosition(vertextID,posX,posY)
   {
@@ -88,7 +90,8 @@ export class VertexData
     this._vertices[index + 1] = v;
   }
 
-  AppendVertices(vertextData,childIndex,transformationMatrix)
+  //追加顶点到batch
+  AppendBatchVertices(vertextData,childIndex,transformationMatrix)
   {
     if((vertextData instanceof  VertexData) == false)
     {

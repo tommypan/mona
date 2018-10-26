@@ -4,6 +4,7 @@ import {Transform} from "../utils/Transform.js";
 import {Status} from "../debug/Status.js";
 
 //默认中心点为左上角
+//显示列表树基类
 export class DisplayObject {
 
   constructor(width,height)
@@ -27,17 +28,10 @@ export class DisplayObject {
     this._shader = false;
     this.isDirty = false;
     this._shaderProgram = false;
-
+    this.renderReady = false;
   }
 
-
-
-  //更新位置，旋转灯信息。常发生在添加或者移除DisplayObject时
-  UpdateGlobalTransform()
-  {
-    this.localPosition = this.localPosition;
-  }
-
+  //子节点坐标系的点转换到世界坐标
   LocalToGlobal(point)
   {
     if((point instanceof  Vector2) == false)
@@ -58,6 +52,7 @@ export class DisplayObject {
     return new Vector2(result[6],result[7]);
   }
 
+  //世界坐标的点转换到某个子节点坐标系
   GlobalToLocal(point)
   {
     if((point instanceof  Vector2) == false)
@@ -79,6 +74,7 @@ export class DisplayObject {
     return new Vector2(result[6],result[7]);
   }
 
+  //获取当前坐标系相对于目标坐标系的转换矩阵
   GetTransformMatrix2Target(targetObject)
   {
     var transformMatrix = mat3.create();

@@ -5,7 +5,6 @@ import {Text} from "./text/Text.js";
 import {Loader} from "./loader/Loader.js";
 import {Event} from "./events/Event.js";
 import {EventDefine} from "./events/EventDefine.js";
-import {DisplayContainer} from "./display/DisplayContainer.js";
 import {BatchSprite} from "./display/BatchSprite.js";
 
 var numbers = [4, 9, 16, 25].map(function(value)

@@ -1,11 +1,11 @@
 import {Event} from "../events/Event.js";
 import {EventDefine} from "../events/EventDefine.js";
 
+//list这些由外部自己管理实现，render引擎不关心
 export class Loader{
 
   constructor()
   {
-      //list这些由外部自己管理实现，引擎不关心
   }
 
    LoadImage2D(path)

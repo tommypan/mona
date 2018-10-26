@@ -3,6 +3,7 @@ import {VertexData} from "../utils/VertexData.js";
 import {Shader} from "../shader/Shader.js";
 import {Status} from "../debug/Status.js";
 
+//批量渲染Sprite，只要材质相同，就有合并drawcall的能力，减少cpu到gpu的耗时
 export class BatchSprite extends DisplayContainer{
   constructor(texture,width,height){
     super(width,height);
@@ -12,11 +13,8 @@ export class BatchSprite extends DisplayContainer{
 
   onShaderInitComplete(shaderProgram)
   {
-    //todo 这块还要好好的抽象
-    //1.1怎么产生indices
-    //1.2z怎么设置属性
-    //1.3怎么绑定缓冲区
     this._shaderProgram = shaderProgram;
+    this.renderReady = true;
   }
 
   AddSprite(sprite)
@@ -81,7 +79,7 @@ export class BatchSprite extends DisplayContainer{
 
     //todo 暂时没有考虑嵌套
     for ( let i = 0; i <this.Children.length; i++){
-      this.vertextData.AppendVertices(this.Children[i].vertextData,i,this.Children[i].GetTransformMatrix2Target(this));
+      this.vertextData.AppendBatchVertices(this.Children[i].vertextData,i,this.Children[i].GetTransformMatrix2Target(this));
     }
 
     this._vFillBuffer();
