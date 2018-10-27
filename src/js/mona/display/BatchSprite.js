@@ -7,8 +7,8 @@ import {Status} from "../debug/Status.js";
 export class BatchSprite extends DisplayContainer{
   constructor(texture,width,height){
     super(width,height);
+    this.makeGLTexture(texture);
     this._shader = new Shader(this.gl,"js/mona/shader/simpleTexture-vext.glsl","js/mona/shader/simpleTexture-frag.glsl",this.onShaderInitComplete.bind(this));
-    this._texture = texture;
   }
 
   onShaderInitComplete(shaderProgram)
@@ -87,6 +87,25 @@ export class BatchSprite extends DisplayContainer{
     Status.AddDrawCount();
   }
 
+  // 将文字放在画布中间
+  makeGLTexture(bitmapData) {
+
+    let gl = this.gl;
+    //创建纹理对象
+    var texture = gl.createTexture();
+    //获取u_Sampler的存储位置
+
+    //1.对纹理图像进行Y轴反转
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+    //3.向target绑定纹理对象
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+
+    //4.配置纹理参数
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    //5.配置纹理图像
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, bitmapData);
+    this._texture = texture;
+  }
 
   _vFillBuffer()
   {
@@ -131,8 +150,6 @@ export class BatchSprite extends DisplayContainer{
     super._vFillUniform();
 
     let gl = this.gl;
-    //创建纹理对象
-    var texture = gl.createTexture();
     //获取u_Sampler的存储位置
     var u_Sampler = gl.getUniformLocation(this._shaderProgram, 'u_Sampler');
 
@@ -141,12 +158,7 @@ export class BatchSprite extends DisplayContainer{
     //2.开启0号纹理单元
     gl.activeTexture(gl.TEXTURE0);
     //3.向target绑定纹理对象
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-
-    //4.配置纹理参数
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    //5.配置纹理图像
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, this._texture);
+    gl.bindTexture(gl.TEXTURE_2D, this._texture);
 
     //6.将0号纹理图像传递给着色器
     gl.uniform1i(u_Sampler, 0);
