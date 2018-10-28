@@ -2,13 +2,15 @@ import {Vector2} from "../utils/Vector2.js";
 import {RenderSupport} from "../rendering/RenderSupport.js";
 import {Transform} from "../utils/Transform.js";
 import {Status} from "../debug/Status.js";
+import {EventDispatcher} from "../input/EventDispatcher.js";
 
 //默认中心点为左上角
 //显示列表树基类
-export class DisplayObject {
+export class DisplayObject extends EventDispatcher{
 
   constructor(width,height)
   {
+    super();
     var canvas = document.getElementById('canvas');
     //获取绘制二维上下文
     this.gl = canvas.getContext('webgl');
@@ -258,11 +260,37 @@ export class DisplayObject {
     gl.uniformMatrix4fv(mvpMatrix, false, RenderSupport.mvpMatrix);
   }
 
+  PreRender()
+  {
+    this._vPreRender();
+  }
+
+  _vPreRender()
+  {
+
+  }
+
+  PostRender()
+  {
+    Status.AddDrawCount();
+    this._vPostRender();
+  }
+
+  _vPostRender()
+  {
+    Status.AddDrawCount();
+  }
+
+
   Render()
   {
+
+    this.PreRender();
+
     this._vFillBuffer();
 
     this._vFillUniform();
-    Status.AddDrawCount();
+
+    this.PostRender();
   }
  }
