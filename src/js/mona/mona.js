@@ -1,5 +1,6 @@
 import {Stage} from "./rendering/Stage.js";
 import {Input} from "./input/Input.js";
+import {Status} from "./debug/Status.js";
 
 export class mona {
   constructor(targetFPS){
@@ -29,6 +30,7 @@ export class mona {
     var currentTime = new Date();
     var deltaTime = currentTime - this._lastTime;
     this._lastTime = currentTime;
+    Status.fps = 1000/deltaTime;
 
     this.updateDisplayTree(deltaTime);
   }
