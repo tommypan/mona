@@ -34,6 +34,8 @@ export class BatchSprite extends DisplayContainer{
     this.CheckVertextData();
 
     this.RemoveChild(sprite);
+
+    this.vertextData.ClearRestBatchVertext(this.Children.length+1);
   }
 
 

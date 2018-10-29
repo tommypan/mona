@@ -68,6 +68,18 @@ export class VertexData
     }
   }
 
+
+  ClearRestBatchVertext(displayNum)
+  {
+    let perQuadVerticeLength = 24;
+    var oldVertices = this._vertices;
+    this._vertices = new Float32Array(displayNum*perQuadVerticeLength);
+    for(let i = 0; i < this._vertices.length;i++)
+    {
+      this._vertices[i] = oldVertices[i];
+    }
+  }
+
   //ID从0开始
   SetVertextPosition(vertextID,posX,posY)
   {
