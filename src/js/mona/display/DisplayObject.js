@@ -286,37 +286,37 @@ export class DisplayObject extends InputEventListener{
     gl.uniformMatrix4fv(mvpMatrix, false, RenderSupport.mvpMatrix);
   }
 
-  PreRender()
+  PreRender(deltaTime)
   {
-    this._vPreRender();
+    this._vPreRender(deltaTime);
   }
 
-  _vPreRender()
+  _vPreRender(deltaTime)
   {
 
   }
 
-  PostRender()
+  PostRender(deltaTime)
   {
     Status.AddDrawCount();
-    this._vPostRender();
+    this._vPostRender(deltaTime);
   }
 
-  _vPostRender()
+  _vPostRender(deltaTime)
   {
     Status.AddDrawCount();
   }
 
 
-  Render()
+  Render(deltaTime)
   {
 
-    this.PreRender();
+    this.PreRender(deltaTime);
 
     this._vFillBuffer();
 
     this._vFillUniform();
 
-    this.PostRender();
+    this.PostRender(deltaTime);
   }
  }

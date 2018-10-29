@@ -69,7 +69,7 @@ export class BatchSprite extends DisplayContainer{
     }
   }
 
-  Render()
+  Render(deltaTime)
   {
 
     if(!this._shaderProgram)

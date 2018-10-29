@@ -14,16 +14,12 @@ export class Stage extends  DisplayContainer{
     }
 
 
-    RenderDisplayTree()
+    RenderDisplayTree(deltaTime)
     {
 
       Status.ResetDrawCount();
       RenderSupport.ClearMatrix()
-      if(this.isDirty)
-      {
-        this.Render();
-        this.isDirty = false;
-      }
+      this.Render(deltaTime);
 
     }
 }

@@ -48,7 +48,7 @@ export class DisplayContainer extends DisplayObject
     return this._children;
   }
 
-  Render()
+  Render(deltaTime)
   {
 
     for ( let i = 0; i <this.Children.length; i++)
@@ -57,7 +57,7 @@ export class DisplayContainer extends DisplayObject
       {
         RenderSupport.PushMatrix();
         RenderSupport.TransformMatrix(this.Children[i]);
-        this.Children[i].Render();
+        this.Children[i].Render(deltaTime);
         RenderSupport.PopMatrix();
       }
 

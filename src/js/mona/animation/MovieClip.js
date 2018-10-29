@@ -9,8 +9,9 @@ export class MovieClip extends Quad{
     this._playIndex = 0;
     this._autoPlay = false;
     this.makeGLTexture(bitmapDataList);
+    this.playSpeed = 30;
+    this._statCountDelta = 0;
     this._shader = new Shader(this.gl,"js/mona/shader/simpleTexture-vext.glsl","js/mona/shader/simpleTexture-frag.glsl",this.onShaderInitComplete.bind(this));
-
   }
 
   onShaderInitComplete(shaderProgram)
@@ -61,8 +62,9 @@ export class MovieClip extends Quad{
     }
   }
 
-  _vPreRender()
+  _vPreRender(deltaTime)
   {
+
     if(!this._autoPlay)
     {
       this._texture = this._glTextureList[this._playIndex];
@@ -79,6 +81,14 @@ export class MovieClip extends Quad{
       this._texture = this._glTextureList[this._playIndex];
     }
 
+    if(this._statCountDelta + deltaTime < this.playSpeed)
+    {
+      this._statCountDelta += deltaTime;
+      return;
+    }else {
+      this._statCountDelta = 0;
+    }
+    
     this._playIndex++;
   }
 

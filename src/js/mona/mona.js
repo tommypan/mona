@@ -9,10 +9,13 @@ export class mona {
     this.stage = new Stage();
 
     Input.Init(this.stage);
+
   }
 
   Init()
   {
+
+    this._lastTime = new Date();
     this._schedualID = setInterval(this.update.bind(this),this.FPS);
   }
 
@@ -23,13 +26,17 @@ export class mona {
 
   update()
   {
-    this.updateDisplayTree();
+    var currentTime = new Date();
+    var deltaTime = currentTime - this._lastTime;
+    this._lastTime = currentTime;
+
+    this.updateDisplayTree(deltaTime);
   }
 
-  updateDisplayTree()
+  updateDisplayTree(deltaTime)
   {
 
-    this.stage.RenderDisplayTree();
+    this.stage.RenderDisplayTree(deltaTime);
 
   }
 }
