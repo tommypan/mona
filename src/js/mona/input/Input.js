@@ -21,6 +21,7 @@ export class Input {
     Input.preventPropagation = false;
   }
 
+  //阻止当前事件冒泡
   static stopPropagation()
   {
     Input.preventPropagation = true;

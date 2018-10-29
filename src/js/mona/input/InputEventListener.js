@@ -39,7 +39,7 @@ export class InputEventListener {
         return;
       }
 
-      if(!bound.CheckInteract(eventData.x,eventData.y))
+      if(!bound.CheckInteractPoint(eventData.x,eventData.y))
       {
         return;
       }

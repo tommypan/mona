@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dffc2cf7-d1e0-41cc-aa3c-51d2cf18a7a9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/js/mona/input/Input.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/mona/utils/Bound.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/weFlyGame/framework/ModuleService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/weFlyGame/framework/ScheduleService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/animation/MovieClip.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/animation/MovieClip.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/mona/display/DisplayObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/DisplayObject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/events/EventDefine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/events/EventDefine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/input/EventDispatcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/input/InputEventListener.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/mona.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/mona.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/mona/input/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/input/Input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/mona/input/InputEventListener.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/input/InputEventListener.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/mona/utils/Bound.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/utils/Bound.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/weFlyGame/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/weFlyGame/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -30,8 +23,11 @@
       <file leaf-file-name="InputEventListener.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/mona/input/InputEventListener.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-268">
-              <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
+            <state relative-caret-position="332">
+              <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#53#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -39,8 +35,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/weFlyGame/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="96" column="12" lean-forward="true" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
+            <state relative-caret-position="418">
+              <caret line="91" column="25" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="25" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -63,8 +59,8 @@
       <file leaf-file-name="Bound.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Bound.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="15" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="15" />
+            <state relative-caret-position="345">
+              <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -72,8 +68,8 @@
       <file leaf-file-name="Input.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/mona/input/Input.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="345">
+              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -123,8 +119,8 @@
       <file leaf-file-name="DisplayObject.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/mona/display/DisplayObject.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+            <state relative-caret-position="159">
+              <caret line="136" column="3" lean-forward="true" selection-start-line="136" selection-start-column="3" selection-end-line="136" selection-end-column="3" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -219,12 +215,12 @@
         <option value="$PROJECT_DIR$/src/js/weFlyGame/framework/ScheduleService.js" />
         <option value="$PROJECT_DIR$/src/js/mona/animation/MovieClip.js" />
         <option value="$PROJECT_DIR$/src/js/mona/events/EventDefine.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/utils/Bound.js" />
         <option value="$PROJECT_DIR$/src/js/mona/mona.js" />
-        <option value="$PROJECT_DIR$/src/js/mona/display/DisplayObject.js" />
         <option value="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" />
         <option value="$PROJECT_DIR$/src/js/mona/input/Input.js" />
         <option value="$PROJECT_DIR$/src/js/mona/input/InputEventListener.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/display/DisplayObject.js" />
+        <option value="$PROJECT_DIR$/src/js/mona/utils/Bound.js" />
         <option value="$PROJECT_DIR$/src/js/weFlyGame/main.js" />
       </list>
     </option>
@@ -490,12 +486,12 @@
       <workItem from="1540640188869" duration="4775000" />
       <workItem from="1540694800522" duration="10329000" />
       <workItem from="1540728397695" duration="6086000" />
-      <workItem from="1540786138819" duration="1424000" />
+      <workItem from="1540786138819" duration="3165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248972000" />
+    <option name="totallyTimeSpent" value="250713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="719" extended-state="6" />
@@ -777,6 +773,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
           <caret line="60" column="86" lean-forward="true" selection-start-line="60" selection-start-column="86" selection-end-line="60" selection-end-column="86" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -838,16 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/display/DisplayObject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
@@ -858,31 +847,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Bound.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/input/Input.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        <state relative-caret-position="345">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mona/input/InputEventListener.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-268">
-          <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
+        <state relative-caret-position="332">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/display/DisplayObject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="136" column="3" lean-forward="true" selection-start-line="136" selection-start-column="3" selection-end-line="136" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mona/utils/Bound.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/weFlyGame/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="96" column="12" lean-forward="true" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
+        <state relative-caret-position="418">
+          <caret line="91" column="25" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="25" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>

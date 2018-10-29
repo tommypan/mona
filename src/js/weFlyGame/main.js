@@ -19,7 +19,7 @@ var numbers = [4, 9, 16, 25].map(function(value)
 
 var displayContainer = false;
 var hero = false;
-var stage = false;
+var sprite2 = false;
 window.onload = function () {
 
   //var testNum = numbers[1];
@@ -55,7 +55,7 @@ function complte() {
 
   var sprite = new Sprite(ufoBitmapData,200,200);
   sprite.localPosition = new Vector2(115,5);
-  var sprite2 = new Sprite(ufoBitmapData,200,200);
+  sprite2 = new Sprite(ufoBitmapData,200,200);
   sprite2.localPosition = new Vector2(150,0)
   var text = new Text("demo",false,100,100);
   var text2 = new Text("hello",false,100,100);
@@ -79,21 +79,19 @@ function complte() {
   smallSprite.GlobalToLocal(new Vector2(110,5));
   requestAnimationFrame(drawScene);
 
-  hero.addEventListener(EventDefine.MOUSE_EVENT_DOWN,HandleDown);
-  stage.addEventListener(EventDefine.MOUSE_EVENT_DOWN,HandleUp);
+  stage.addEventListener(EventDefine.MOUSE_EVENT_DOWN,HandleDown);
+  //stage.addEventListener(EventDefine.MOUSE_EVENT_DOWN,HandleUp);
 }
 
 function HandleDown(eventData) {
-  //let point = hero.parent.GlobalToLocal(new Vector2(eventData.x,eventData.y));
-  //point.x = point.x + 50;
-  //point.y = point.y + 50;
-  //hero.localPosition = point;
-  var i = 0;
-  i++;
-  Input.stopPropagation();
-}
+  let point = hero.parent.GlobalToLocal(new Vector2(eventData.x,eventData.y));
+  point.x = point.x - 50;
+  point.y = point.y - 50;
+  hero.localPosition = point;
 
-function HandleUp(eventData) {
-  var j = 0;
-  j++;
+  if(hero.hitTest(sprite2.getBound()))
+  {
+    var i = 0;
+    i++;
+  }
 }

@@ -142,6 +142,17 @@ export class DisplayObject extends InputEventListener{
       return new Bound(minPoint.x,minPoint.y,maxPoint.x-minPoint.x,maxPoint.y-minPoint.y);
   }
 
+  hitTest(bound)
+  {
+    if((bound instanceof  Bound) == false)
+    {
+      console.log("DisplayObject hitTest error");
+      return;
+    }
+
+    return this.getBound().CheckInteractBound(bound);
+  }
+
   checkVisibleAndAlpha()
   {
     return true;
