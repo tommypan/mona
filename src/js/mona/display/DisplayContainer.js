@@ -64,4 +64,18 @@ export class DisplayContainer extends DisplayObject
     }
   }
 
+  //事件从渲染树子节点向跟节点冒泡
+  brocastEvent(eventType,eventData)
+  {
+    for ( let i = 0; i <this.Children.length; i++)
+    {
+      if(this.Children[i].renderReady)
+      {
+        this.Children[i].brocastEvent(eventType,eventData);
+      }
+    }
+
+    super.brocastEvent(eventType,eventData);
+  }
+
 }

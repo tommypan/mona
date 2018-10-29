@@ -8,6 +8,8 @@ import {LoaderService} from "./framework/LoaderService.js";
 import {GameEventDefine} from "./logic/GameEventDefine.js";
 import {ResourceService} from "./framework/ResourceService.js";
 import {MovieClip} from "../mona/animation/MovieClip.js";
+import {EventDefine} from "../mona/events/EventDefine.js";
+import {Input} from "../mona/input/Input.js";
 
 var numbers = [4, 9, 16, 25].map(function(value)
   {
@@ -15,7 +17,8 @@ var numbers = [4, 9, 16, 25].map(function(value)
     return value * value}
 )
 
-var displayContainer = false
+var displayContainer = false;
+var hero = false;
 var stage = false;
 window.onload = function () {
 
@@ -45,8 +48,9 @@ function complte() {
 
   var ufoBitmapData = ResourceService.GetAssets("ufo")[0].content;
 
-  var hero = new MovieClip(ResourceService.GetAssets("hero"),100,100);
+  hero = new MovieClip(ResourceService.GetAssets("hero"),100,100);
   hero.localPosition = new Vector2(200,200);
+  hero.Play();
   stage.AddChild(hero);
 
   var sprite = new Sprite(ufoBitmapData,200,200);
@@ -74,4 +78,22 @@ function complte() {
   smallSprite.LocalToGlobal(new Vector2(110,0));
   smallSprite.GlobalToLocal(new Vector2(110,5));
   requestAnimationFrame(drawScene);
+
+  hero.addEventListener(EventDefine.MOUSE_EVENT_DOWN,HandleDown);
+  stage.addEventListener(EventDefine.MOUSE_EVENT_DOWN,HandleUp);
+}
+
+function HandleDown(eventData) {
+  //let point = hero.parent.GlobalToLocal(new Vector2(eventData.x,eventData.y));
+  //point.x = point.x + 50;
+  //point.y = point.y + 50;
+  //hero.localPosition = point;
+  var i = 0;
+  i++;
+  Input.stopPropagation();
+}
+
+function HandleUp(eventData) {
+  var j = 0;
+  j++;
 }

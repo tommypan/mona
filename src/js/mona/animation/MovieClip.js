@@ -7,6 +7,7 @@ export class MovieClip extends Quad{
     super(width,height);
     this._glTextureList = new Array();
     this._playIndex = 0;
+    this._autoPlay = false;
     this.makeGLTexture(bitmapDataList);
     this._shader = new Shader(this.gl,"js/mona/shader/simpleTexture-vext.glsl","js/mona/shader/simpleTexture-frag.glsl",this.onShaderInitComplete.bind(this));
 
@@ -16,6 +17,21 @@ export class MovieClip extends Quad{
   {
     this._shaderProgram = shaderProgram;
     this.renderReady = true;
+  }
+
+  Play()
+  {
+    this._autoPlay = true;
+  }
+
+  Stop()
+  {
+    this._autoPlay = false;
+  }
+
+  Reset()
+  {
+    this._playIndex = 0;
   }
 
   // 将文字放在画布中间
@@ -47,6 +63,12 @@ export class MovieClip extends Quad{
 
   _vPreRender()
   {
+    if(!this._autoPlay)
+    {
+      this._texture = this._glTextureList[this._playIndex];
+      return;
+    }
+
     if(this._playIndex >= this._glTextureList.length)
     {
       this._playIndex = 0;

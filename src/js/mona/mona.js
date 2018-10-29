@@ -1,4 +1,5 @@
 import {Stage} from "./rendering/Stage.js";
+import {Input} from "./input/Input.js";
 
 export class mona {
   constructor(targetFPS){
@@ -6,6 +7,8 @@ export class mona {
     this.FPS = targetFPS ? targetFPS : 1000/30;
 
     this.stage = new Stage();
+
+    Input.Init(this.stage);
   }
 
   Init()

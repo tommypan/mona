@@ -2,11 +2,12 @@ import {Vector2} from "../utils/Vector2.js";
 import {RenderSupport} from "../rendering/RenderSupport.js";
 import {Transform} from "../utils/Transform.js";
 import {Status} from "../debug/Status.js";
-import {EventDispatcher} from "../input/EventDispatcher.js";
+import {InputEventListener} from "../input/InputEventListener.js";
+import {Bound} from "../utils/Bound.js";
 
 //默认中心点为左上角
 //显示列表树基类
-export class DisplayObject extends EventDispatcher{
+export class DisplayObject extends InputEventListener{
 
   constructor(width,height)
   {
@@ -130,6 +131,20 @@ export class DisplayObject extends EventDispatcher{
     }
 
     return transformMatrix;
+  }
+
+  getBound()
+  {
+      let minPoint = this.LocalToGlobal(new Vector2(0,0));
+      let maxPoint = this.LocalToGlobal(new Vector2(this._width,this._height));
+
+      //这里后面优化，不用每次都实例化一个bound
+      return new Bound(minPoint.x,minPoint.y,maxPoint.x-minPoint.x,maxPoint.y-minPoint.y);
+  }
+
+  checkVisibleAndAlpha()
+  {
+    return true;
   }
 
   //此渲染树的跟.不一定是stage
