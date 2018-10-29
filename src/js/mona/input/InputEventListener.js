@@ -45,7 +45,7 @@ export class InputEventListener {
       }
     }
 
-    this.listenerList[eventType](eventData);
+    this.listenerList[eventType][0].call(this.listenerList[eventType][1],eventData);
   }
 
   hasEvent(eventType)
@@ -53,7 +53,7 @@ export class InputEventListener {
     return this.listenerList[eventType];
   }
 
-  addEventListener(eventType,handlerFunc,priority)
+  addEventListener(handlerObj,eventType,handlerFunc,priority)
   {
     if(this.hasEvent(eventType))
     {
@@ -61,7 +61,9 @@ export class InputEventListener {
       return;
     }
 
-    this.listenerList[eventType] = handlerFunc;
+    this.listenerList[eventType] = [];
+    this.listenerList[eventType][0] = handlerFunc;
+    this.listenerList[eventType][1] = handlerObj;
   }
 
   removeEventListener(eventType)

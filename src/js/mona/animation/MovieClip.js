@@ -88,7 +88,7 @@ export class MovieClip extends Quad{
     }else {
       this._statCountDelta = 0;
     }
-    
+
     this._playIndex++;
   }
 
