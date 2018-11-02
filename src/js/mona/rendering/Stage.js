@@ -16,6 +16,8 @@ export class Stage extends  DisplayContainer{
 
     RenderDisplayTree(deltaTime)
     {
+      // 清空缓冲区，包括自定义和默认
+      this.gl.clear(this.gl.COLOR_BUFFER_BIT);
 
       Status.ResetDrawCount();
       RenderSupport.ClearMatrix()

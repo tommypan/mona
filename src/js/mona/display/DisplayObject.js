@@ -4,6 +4,9 @@ import {Transform} from "../utils/Transform.js";
 import {Status} from "../debug/Status.js";
 import {InputEventListener} from "../input/InputEventListener.js";
 import {Bound} from "../utils/Bound.js";
+import {BasePostEffect} from "../postEffect/BasePostEffect.js";
+import {RenderTexture} from "../texture/RenderTexture.js";
+import {GLSeetting} from "../rendering/GLSeetting.js";
 
 //默认中心点为左上角
 //显示列表树基类
@@ -20,18 +23,24 @@ export class DisplayObject extends InputEventListener{
       return;
     }
 
+    this.defaultWidth = 1;
+    this.defaultHeight = 1;
     this._parent = false; //readonly
     this._root = false;//readonly
     this._transform = new Transform();
     this.localPosition = new Vector2(0,0);
     this.localRotation = 0;
     this.localScale = new Vector2(1,1);
-    this.width = width;
-    this.height = height;
+    this.width = width ? width : this.defaultWidth;
+    this.height = height ? height : this.defaultHeight;
     this._shader = false;
     this.isDirty = false;
     this._shaderProgram = false;
     this.renderReady = false;
+
+    this._needRenderTarget = false;//后处理效果支持.设置来渲染到纹理后，此节点和子节点都会统一渲染到纹理，除非跳出此树
+    this._renderTexture = new RenderTexture(false,false);
+    this._customPostRender = false;//外部传入指定后处理类
   }
 
   //子节点坐标系的点转换到世界坐标
@@ -156,6 +165,19 @@ export class DisplayObject extends InputEventListener{
   checkVisibleAndAlpha()
   {
     return true;
+  }
+
+  set customPostRender(value)
+  {
+    if(value instanceof  BasePostEffect)
+    {
+      this._customPostRender = value;
+      this._needRenderTarget = true;
+    }else
+    {
+      this._customPostRender = false;
+      this._needRenderTarget = false;
+    }
   }
 
   //此渲染树的跟.不一定是stage
@@ -296,27 +318,84 @@ export class DisplayObject extends InputEventListener{
 
   }
 
-  PostRender(deltaTime)
-  {
-    Status.AddDrawCount();
-    this._vPostRender(deltaTime);
-  }
-
-  _vPostRender(deltaTime)
-  {
-    Status.AddDrawCount();
-  }
-
-
   Render(deltaTime)
   {
 
     this.PreRender(deltaTime);
 
+    this.RenderToTargetTexture();
+
     this._vFillBuffer();
 
     this._vFillUniform();
 
+    Status.AddDrawCount();
+
     this.PostRender(deltaTime);
+  }
+
+  PostRender(deltaTime)
+  {
+    this._vPostRender(deltaTime);
+  }
+
+  _vPostRender(deltaTime)
+  {
+    this.FinishRenderTargetTexture();
+  }
+
+  RenderToTargetTexture()
+  {
+    if(!this._needRenderTarget)
+    {
+      return;
+    }
+
+    let gl = this.gl;
+
+    var bound = new Bound(this.localPosition.x,this.localPosition.y,this.width,this.height);
+
+    //创建帧缓冲区对象
+    var fbo = gl.createFramebuffer();
+    //创建渲染缓冲区对象
+    //var renderbuffer = gl.createRenderbuffer();
+    //绑定帧缓冲区
+    gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+    //绑定渲染缓冲区
+    //gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
+    //初始化渲染缓冲区，这里只指定了模板缓冲区，没有指定深度缓冲区
+    //如果需要深度缓冲区，第二参数可改为 DEPTH_STENCIL,同时 framebufferRenderbuffer 的第二个参数为 DEPTH_STENCIL_ATTACHMENT
+    //gl.renderbufferStorage(gl.RENDERBUFFER, gl.STENCIL_INDEX8, bound.width, bound.height);
+    //gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.STENCIL_ATTACHMENT, gl.RENDERBUFFER,renderbuffer);
+
+    //创建帧缓冲纹理
+    var fboTexture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, fboTexture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA,GLSeetting.viewPortWidth , GLSeetting.viewPortHeight, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+    //附着帧缓冲区的颜色缓冲区
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, fboTexture, 0);
+
+    this._renderTexture.glFBOTexture = fboTexture;
+    this._renderTexture.bounds = bound;
+    RenderSupport.PushFBO(fbo);
+  }
+
+  FinishRenderTargetTexture()
+  {
+    if(this._needRenderTarget)
+    {
+      RenderSupport.PopFBO();
+      if(RenderSupport.fbo)
+      {
+        this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, RenderSupport.fbo);
+      }else{
+        this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, null);
+      }
+      this._customPostRender.RenderImage(this.parent,this._renderTexture);
+    }
   }
  }

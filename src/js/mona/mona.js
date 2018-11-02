@@ -1,11 +1,14 @@
 import {Stage} from "./rendering/Stage.js";
 import {Input} from "./input/Input.js";
 import {Status} from "./debug/Status.js";
+import {RenderSupport} from "./rendering/RenderSupport.js";
 
 export class mona {
   constructor(targetFPS){
 
     this.FPS = targetFPS ? targetFPS : 1000/30;
+
+    RenderSupport.Init();
 
     this.stage = new Stage();
 

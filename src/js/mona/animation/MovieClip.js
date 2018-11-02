@@ -60,6 +60,8 @@ export class MovieClip extends Quad{
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, bitmapDataList[i].content);
       this._glTextureList[this._glTextureList.length] = texture;
     }
+    this.width = this.width == this.defaultWidth ? bitmapDataList[0].content.width : this.width;
+    this.height = this.height == this.defaultHeight ? bitmapDataList[0].content.height : this.height;
   }
 
   _vPreRender(deltaTime)

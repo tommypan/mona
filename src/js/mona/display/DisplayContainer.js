@@ -50,6 +50,7 @@ export class DisplayContainer extends DisplayObject
 
   Render(deltaTime)
   {
+    this.RenderToTargetTexture();
 
     for ( let i = 0; i <this.Children.length; i++)
     {
@@ -60,8 +61,9 @@ export class DisplayContainer extends DisplayObject
         this.Children[i].Render(deltaTime);
         RenderSupport.PopMatrix();
       }
-
     }
+
+    this.FinishRenderTargetTexture();
   }
 
   //事件从渲染树子节点向跟节点冒泡

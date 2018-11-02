@@ -108,6 +108,8 @@ export class BatchSprite extends DisplayContainer{
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     //5.配置纹理图像
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, bitmapData);
+    this.width = this.defaultWidth ;
+    this.height = this.defaultHeight;
     this._texture = texture;
   }
 

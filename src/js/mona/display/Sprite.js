@@ -35,7 +35,10 @@ export class Sprite extends Quad{
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       //5.配置纹理图像
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, bitmapData);
-    this._texture = texture;
+
+      this.width = this.width == this.defaultWidth ? bitmapData.width : this.width;
+      this.height = this.height == this.defaultHeight ? bitmapData.height : this.height;
+      this._texture = texture;
   }
 
 }

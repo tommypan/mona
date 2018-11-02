@@ -9,6 +9,8 @@ import {Vector2} from "../../mona/utils/Vector2.js";
 import {EventDefine} from "../../mona/events/EventDefine.js";
 import {BatchSprite} from "../../mona/display/BatchSprite.js";
 import {Text} from "../../mona/text/Text.js";
+import {BasePostEffect} from "../../mona/postEffect/BasePostEffect.js";
+import {DisplayContainer} from "../../mona/display/DisplayContainer.js";
 
 class Enemy
 {
@@ -27,13 +29,13 @@ class Enemy
     this.deadMovie = false;
     if(this.type == 1)
     {
-      this.deadMovie = new MovieClip(ResourceService.GetAssets("enemy1_down"),60,50);
+      this.deadMovie = new MovieClip(ResourceService.GetAssets("enemy1_down"));
     }else if(this.type == 2)
     {
-      this.deadMovie = new MovieClip(ResourceService.GetAssets("enemy2_down"),70,100);
+      this.deadMovie = new MovieClip(ResourceService.GetAssets("enemy2_down"));
     }else if(this.type ==3)
     {
-      this.deadMovie = new MovieClip(ResourceService.GetAssets("enemy3_down"),165,260);
+      this.deadMovie = new MovieClip(ResourceService.GetAssets("enemy3_down"));
     }
 
     this.stage.AddChild(this.deadMovie);
@@ -123,16 +125,16 @@ export class Wefly
 
   gotoInitScene()
   {
-    this.background = new Sprite(ResourceService.GetAssets("background")[0].content,480,600);
+    this.background = new Sprite(ResourceService.GetAssets("background")[0].content);
     this.stage.AddChild(this.background);
 
-    this.game_loading = new MovieClip(ResourceService.GetAssets("game_loading"),200,50);
+    this.game_loading = new MovieClip(ResourceService.GetAssets("game_loading"));
     this.stage.AddChild(this.game_loading);
     this.game_loading.localPosition = new Vector2(100,400);
     this.game_loading.playSpeed = 300;
     this.game_loading.Play();
 
-    this.shoot_copyright = new Sprite(ResourceService.GetAssets("shoot_copyright")[0].content,441,255);
+    this.shoot_copyright = new Sprite(ResourceService.GetAssets("shoot_copyright")[0].content);
     this.stage.AddChild(this.shoot_copyright);
     this.shoot_copyright.localPosition = new Vector2(0,50);
 
@@ -149,12 +151,17 @@ export class Wefly
     this.stage.RemoveChild(this.game_loading);
     this.stage.RemoveChild(this.shoot_copyright);
 
-    this.hero = new MovieClip(ResourceService.GetAssets("hero"),100,100);
+    this.hero = new MovieClip(ResourceService.GetAssets("hero"));
     this.stage.AddChild(this.hero);
     this.hero.localPosition = new Vector2(100,400);
     this.hero.Play();
 
     this.hero.addEventListener(this,EventDefine.MOUSE_EVENT_DOWN,this.startFocusHero);
+    this.stage.customPostRender = new BasePostEffect();
+    this.hero.customPostRender = new BasePostEffect();
+
+    var menuContainer = new DisplayContainer(1,1);
+
 
     this.updateID = setInterval(this.updateLogic.bind(this),30);
   }
@@ -198,7 +205,7 @@ export class Wefly
     if(!this.bullets)
     {
       this.bullets = [];
-      this.batchBulletContainer = new BatchSprite(ResourceService.GetAssets("bullet1")[0].content,1,1);
+      this.batchBulletContainer = new BatchSprite(ResourceService.GetAssets("bullet1")[0].content);
       this.stage.AddChild(this.batchBulletContainer);
     }
 
@@ -211,7 +218,7 @@ export class Wefly
     }
 
 
-    var bullet = new Sprite(ResourceService.GetAssets("bullet1")[0].content,9,20);
+    var bullet = new Sprite(ResourceService.GetAssets("bullet1")[0].content);
     this.batchBulletContainer.AddSprite(bullet);
     var bornPoint = this.hero.LocalToGlobal(new Vector2(this.hero.width/2,0));
     bullet.localPosition = bullet.parent.GlobalToLocal(bornPoint);
@@ -223,13 +230,13 @@ export class Wefly
     if(!this.enemys)
     {
       this.enemys = [];
-      this.batchEnemy1Container = new BatchSprite(ResourceService.GetAssets("enemy1")[0].content,1,1);
+      this.batchEnemy1Container = new BatchSprite(ResourceService.GetAssets("enemy1")[0].content);
       this.stage.AddChild(this.batchEnemy1Container);
 
-      this.batchEnemy2Container = new BatchSprite(ResourceService.GetAssets("enemy2")[0].content,1,1);
+      this.batchEnemy2Container = new BatchSprite(ResourceService.GetAssets("enemy2")[0].content);
       this.stage.AddChild(this.batchEnemy2Container);
 
-      this.batchEnemy3Container = new BatchSprite(ResourceService.GetAssets("enemy3")[0].content,1,1);
+      this.batchEnemy3Container = new BatchSprite(ResourceService.GetAssets("enemy3")[0].content);
       this.stage.AddChild(this.batchEnemy3Container);
     }
 
@@ -246,7 +253,7 @@ export class Wefly
     var hardEnemyPoint = 1;
     if(fakeRandomPoint > 0 && fakeRandomPoint <= easyEnemyPoint)
     {
-      var enemy = new Sprite(ResourceService.GetAssets("enemy1")[0].content,60,40);
+      var enemy = new Sprite(ResourceService.GetAssets("enemy1")[0].content);
       this.batchEnemy1Container.AddSprite(enemy);
       enemy.localPosition = new Vector2(Math.random()*this.stage.width,0);
 
@@ -254,7 +261,7 @@ export class Wefly
       this.enemys[this.enemys.length] = easyEnemy;
     }else if(fakeRandomPoint > easyEnemyPoint && fakeRandomPoint <= normalEnemyPoint)
     {
-      var enemy = new Sprite(ResourceService.GetAssets("enemy2")[0].content,70,100);
+      var enemy = new Sprite(ResourceService.GetAssets("enemy2")[0].content);
       this.batchEnemy2Container.AddSprite(enemy);
       enemy.localPosition = new Vector2(Math.random()*this.stage.width,0);
 
@@ -262,7 +269,7 @@ export class Wefly
       this.enemys[this.enemys.length] = normalEnemy;
     }else if(fakeRandomPoint > normalEnemyPoint && fakeRandomPoint <= hardEnemyPoint)
     {
-      var enemy = new Sprite(ResourceService.GetAssets("enemy3")[0].content,170,260);
+      var enemy = new Sprite(ResourceService.GetAssets("enemy3")[0].content);
       this.batchEnemy3Container.AddSprite(enemy);
       enemy.localPosition = new Vector2(Math.random()*this.stage.width,0);
 
@@ -371,11 +378,11 @@ export class Wefly
 
     this.stage.RemoveChild(this.background);
 
-    this.gameover = new Sprite(ResourceService.GetAssets("gameover")[0].content,480,600);
+    this.gameover = new Sprite(ResourceService.GetAssets("gameover")[0].content);
     this.stage.AddChild(this.gameover);
 
     this.scoreText = new Text(this._score.toString(),null,50,60);
     this.stage.AddChild(this.scoreText);
-    this.scoreText.localPosition = new Vector2(200,300);
+    this.scoreText.localPosition = new Vector2(200,360);
   }
 }

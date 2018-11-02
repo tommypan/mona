@@ -43,4 +43,9 @@ export class Shader {
     request.open("GET",fileName,true);
     request.send();
   }
+
+  SetUniform()
+  {
+
+  }
 }
