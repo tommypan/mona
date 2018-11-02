@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dffc2cf7-d1e0-41cc-aa3c-51d2cf18a7a9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/js/mona/postEffect/BasePostEffect.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/mona/postEffect/BlurPostRender.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/mona/texture/Texture.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/animation/MovieClip.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/animation/MovieClip.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/display/BatchSprite.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/BatchSprite.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/display/DisplayObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/DisplayObject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/display/Sprite.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/display/Sprite.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/mona.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/mona.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/rendering/Stage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/rendering/Stage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/shader/Shader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/shader/Shader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mona/texture/RenderTexture.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mona/texture/RenderTexture.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/weFlyGame/logic/Wefly.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/weFlyGame/logic/Wefly.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +16,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BasePostEffect.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BasePostEffect.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/mona/postEffect/BasePostEffect.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -38,6 +24,15 @@
               <folding>
                 <element signature="e#39#99#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -83,18 +78,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="426">
               <caret line="38" selection-start-line="38" selection-end-line="39" selection-end-column="88" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Quad.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/mona/display/Quad.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -171,10 +154,10 @@
       <find>FinishRenderTargetTexture</find>
       <find>stackIndex</find>
       <find>_vFillVertices</find>
-      <find>mvpMatrix</find>
       <find>this._fbo</find>
       <find>text</find>
       <find>RenderImage</find>
+      <find>mvpMatrix</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,7 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/js/mona/utils/webglUtils.js" />
         <option value="$PROJECT_DIR$/src/js/mona/shader/text-frag.glsl" />
         <option value="$PROJECT_DIR$/src/js/mona/text/TextFormat.js" />
         <option value="$PROJECT_DIR$/src/js/mona/shader/ShaderUtility.js" />
@@ -235,6 +217,7 @@
         <option value="$PROJECT_DIR$/src/js/mona/rendering/RenderSupport.js" />
         <option value="$PROJECT_DIR$/src/js/mona/display/DisplayObject.js" />
         <option value="$PROJECT_DIR$/src/js/mona/display/DisplayContainer.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -470,12 +453,12 @@
       <workItem from="1540808287078" duration="17097000" />
       <workItem from="1540985567329" duration="5290000" />
       <workItem from="1541035427325" duration="10046000" />
-      <workItem from="1541127925264" duration="18692000" />
+      <workItem from="1541127925264" duration="19410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="301988000" />
+    <option name="totallyTimeSpent" value="302706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="719" extended-state="0" />
@@ -517,9 +500,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/img/shoot/hero2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/img/shoot/hero_blowup_n1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -823,6 +803,13 @@
           <folding>
             <element signature="e#39#99#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>

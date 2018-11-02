@@ -31,24 +31,16 @@ Choose one of the following options:
 
 ## Features
 
-* HTML5 ready. Use the new elements with confidence.
-* Designed with progressive enhancement in mind.
-* Includes:
-  * [`Normalize.css`](https://necolas.github.com/normalize.css/)
-    for CSS normalizations and common bug fixes
-  * [`jQuery`](https://jquery.com/) via CDN with [SRI Hash](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) and a local fallback
-  * A custom build of [`Modernizr`](https://modernizr.com/) for feature
-    detection
-  * [`Apache Server Configs`](https://github.com/h5bp/server-configs-apache)
-    that, among other, improve the web site's performance and security
-* Placeholder CSS Media Queries.
-* Useful CSS helper classes.
-* Default print styles, performance optimized.
-* An optimized version of the Google Universal Analytics snippet.
-* Protection against any stray `console` statements causing JavaScript
-  errors in older browsers.
-* "Delete-key friendly." Easy to strip out parts you don't need.
-* Extensive inline and accompanying documentation.
+  * 容器，渲染物件的空间变换支持
+  * 位图，文本渲染
+  * 事件冒泡，动画，调试，碰撞支持
+  * 批量渲染支持
+  * 自定义后处理效果支持
+  
+## Future Features
+
+  * 物件多Shader渲染
+  * 静态物件渲染优化
 
 
 ## Browser support
