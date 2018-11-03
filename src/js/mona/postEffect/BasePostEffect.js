@@ -1,6 +1,7 @@
 //在所有渲染树流程完成之后，给用户一个后处理的机会，实现各种现代后处理效果
 import {RenderSupport} from "../rendering/RenderSupport.js";
 import {Status} from "../debug/Status.js";
+import {Shader} from "../shader/Shader.js";
 
 export class BasePostEffect {
 
@@ -51,19 +52,8 @@ export class BasePostEffect {
       //设置颜色
       "gl_FragColor = texture2D(u_Sampler, v_TexCoord);" +  // 设置颜色
       "}";
-    //编译着色器
-    var vertShader = gl.createShader(gl.VERTEX_SHADER);
-    gl.shaderSource(vertShader, VSHADER_SOURCE);
-    gl.compileShader(vertShader);
-    var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(fragShader, FSHADER_SOURCE);
-    gl.compileShader(fragShader);
-    //合并程序
-    var shaderProgram = gl.createProgram();
-    gl.attachShader(shaderProgram, vertShader);
-    gl.attachShader(shaderProgram, fragShader);
-    gl.linkProgram(shaderProgram);
-    gl.useProgram(shaderProgram);
+
+    var shader = new Shader(gl,VSHADER_SOURCE,FSHADER_SOURCE,false,true);
 
     // var vertices = new Float32Array([
     //   bound.width/2,  0,   0.0, 1.0,
@@ -80,39 +70,17 @@ export class BasePostEffect {
     ]);
 
     var n = 4;//点的个数
-    //创建缓冲区对象
-    var vertexBuffer = gl.createBuffer();
-    //将缓冲区对象绑定到目标
-    gl.bindBuffer(gl.ARRAY_BUFFER,vertexBuffer);
-    //向缓冲区写入数据
-    gl.bufferData(gl.ARRAY_BUFFER,vertices,gl.STATIC_DRAW);
     var FSIZE = vertices.BYTES_PER_ELEMENT;
 
-    //获取坐标点
-    var a_Position = gl.getAttribLocation(shaderProgram, "a_Position");
-    //将缓冲区对象分配给a_Position变量
-    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, FSIZE*4, 0);//shader索引，元素个数，浮点型的常量,
-    //连接a_Position变量与分配给它的缓冲区对象
-    gl.enableVertexAttribArray(a_Position);
+    shader.CreateBuffer(vertices);
 
-    //获取Color坐标点
-    var a_TextCoord = gl.getAttribLocation(shaderProgram, "a_TextCoord");
-    //将缓冲区对象分配给a_Position变量
-    gl.vertexAttribPointer(a_TextCoord, 2, gl.FLOAT, false, FSIZE*4, FSIZE*2);
-    //连接a_Position变量与分配给它的缓冲区对象
-    gl.enableVertexAttribArray(a_TextCoord);
+    shader.SetAttribute("a_Position",FSIZE,0);
 
-    //var mvpMatrix = gl.getUniformLocation(shaderProgram,'mvpMatrix');
-    //gl.uniformMatrix4fv(mvpMatrix, false, mat4.create());
+    shader.SetAttribute("a_TextCoord",FSIZE,2);
 
-    //2.开启0号纹理单元
-    gl.activeTexture(gl.TEXTURE0);
-    //3.向target绑定纹理对象
-    gl.bindTexture(gl.TEXTURE_2D, source.glFBOTexture);
-    //获取u_Sampler的存储位置
-    var u_Sampler = gl.getUniformLocation(shaderProgram, 'u_Sampler');
-    //6.将0号纹理图像传递给着色器
-    gl.uniform1i(u_Sampler, 0);
+    shader.UseProgram();
+
+    shader.SetTexture(source.glFBOTexture,"u_Sample",0,true);
 
     //绘制矩形
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);

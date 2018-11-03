@@ -343,8 +343,7 @@ export class DisplayObject extends InputEventListener{
     let gl = this.gl;
     gl.useProgram(this._shaderProgram);
 
-    var mvpMatrix = gl.getUniformLocation(this._shaderProgram,'mvpMatrix');
-    gl.uniformMatrix4fv(mvpMatrix, false, RenderSupport.mvpMatrix);
+    this._shader.SetMatrixUniform(RenderSupport.mvpMatrix,"mvpMatrix");
   }
 
   PreRender(deltaTime)
