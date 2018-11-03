@@ -141,6 +141,7 @@ export class Wefly
     this._bulletCounting = 0;
     this._enemyCounting = 0;
     this._score = 0;
+    this._gamePause = false;
 
 
     setTimeout(this.gotoBattleScene.bind(this),3000);
@@ -158,10 +159,39 @@ export class Wefly
 
     this.hero.addEventListener(this,EventDefine.MOUSE_EVENT_DOWN,this.startFocusHero);
     this.stage.customPostRender = new BasePostEffect();
-    this.hero.customPostRender = new BasePostEffect();
 
-    var menuContainer = new DisplayContainer(1,1);
+    if(!this.bullets)
+    {
+      this.bullets = [];
+      this.batchBulletContainer = new BatchSprite(ResourceService.GetAssets("bullet1")[0].content);
+      this.stage.AddChild(this.batchBulletContainer);
+    }
 
+    if(!this.enemys)
+    {
+      this.enemys = [];
+      this.batchEnemy1Container = new BatchSprite(ResourceService.GetAssets("enemy1")[0].content);
+      this.stage.AddChild(this.batchEnemy1Container);
+
+      this.batchEnemy2Container = new BatchSprite(ResourceService.GetAssets("enemy2")[0].content);
+      this.stage.AddChild(this.batchEnemy2Container);
+
+      this.batchEnemy3Container = new BatchSprite(ResourceService.GetAssets("enemy3")[0].content);
+      this.stage.AddChild(this.batchEnemy3Container);
+    }
+
+    this.menuContainer = new DisplayContainer();
+    var game_pause = new Sprite(ResourceService.GetAssets("game_pause")[0].content);
+    game_pause.localPosition = new Vector2(320,10);
+    game_pause.addEventListener(this,EventDefine.MOUSE_EVENT_CLICK,this.onGamePause);
+    this.menuContainer.AddChild(game_pause);
+    var game_resume = new Sprite(ResourceService.GetAssets("game_resume")[0].content);
+    game_resume.localPosition = new Vector2(400,10);
+    game_resume.addEventListener(this,EventDefine.MOUSE_EVENT_CLICK,this.onGameResume);
+    this.menuContainer.AddChild(game_resume);
+
+    this.stage.AddChild(this.menuContainer);
+    this.menuContainer.cacheAsBitmap = true;
 
     this.updateID = setInterval(this.updateLogic.bind(this),30);
   }
@@ -185,6 +215,24 @@ export class Wefly
     this.hero.localPosition = new Vector2(point.x-this.hero.width/2,point.y-this.hero.height/2);
   }
 
+  onGamePause(eventData)
+  {
+    this._gamePause = !this._gamePause;
+
+    if(this._gamePause)
+    {
+      clearInterval(this.updateID);
+    }else{
+      this.updateID = setInterval(this.updateLogic.bind(this),30);
+    }
+  }
+
+  onGameResume(eventData)
+  {
+    this.dispose();
+    this.gotoInitScene();
+  }
+
   heroMove(eventData)
   {
     this.focusHero(eventData);
@@ -202,13 +250,6 @@ export class Wefly
 
   dynamicCreateBullets()
   {
-    if(!this.bullets)
-    {
-      this.bullets = [];
-      this.batchBulletContainer = new BatchSprite(ResourceService.GetAssets("bullet1")[0].content);
-      this.stage.AddChild(this.batchBulletContainer);
-    }
-
 
     this._bulletCounting ++;
 
@@ -227,19 +268,6 @@ export class Wefly
 
   dynamicCreateEnemys()
   {
-    if(!this.enemys)
-    {
-      this.enemys = [];
-      this.batchEnemy1Container = new BatchSprite(ResourceService.GetAssets("enemy1")[0].content);
-      this.stage.AddChild(this.batchEnemy1Container);
-
-      this.batchEnemy2Container = new BatchSprite(ResourceService.GetAssets("enemy2")[0].content);
-      this.stage.AddChild(this.batchEnemy2Container);
-
-      this.batchEnemy3Container = new BatchSprite(ResourceService.GetAssets("enemy3")[0].content);
-      this.stage.AddChild(this.batchEnemy3Container);
-    }
-
     this._enemyCounting ++;
 
     if(this._enemyCounting % 10 != 0)
@@ -361,22 +389,7 @@ export class Wefly
 
   gotoEvalateScene()
   {
-    for (let i = 0; i<this.bullets.length;i++)
-    {
-        this.batchBulletContainer.RemoveSprite(this.bullets[i]);
-    }
-    this.bullets = [];
-
-    for (let i = 0; i<this.enemys.length;i++)
-    {
-        this.enemys[i].remove();
-    }
-    this.enemys = [];
-
-    clearInterval(this.updateID);
-
-
-    this.stage.RemoveChild(this.background);
+    this.dispose();
 
     this.gameover = new Sprite(ResourceService.GetAssets("gameover")[0].content);
     this.stage.AddChild(this.gameover);
@@ -384,5 +397,31 @@ export class Wefly
     this.scoreText = new Text(this._score.toString(),null,50,60);
     this.stage.AddChild(this.scoreText);
     this.scoreText.localPosition = new Vector2(200,360);
+  }
+
+  dispose()
+  {
+    for (let i = 0; i<this.bullets.length;i++)
+    {
+      this.batchBulletContainer.RemoveSprite(this.bullets[i]);
+    }
+    this.bullets = false;
+
+    for (let i = 0; i<this.enemys.length;i++)
+    {
+      this.enemys[i].remove();
+    }
+    this.enemys = false;
+
+    clearInterval(this.updateID);
+
+    this.stage.RemoveChild(this.menuContainer);
+
+    this.stage.RemoveChild(this.background);
+
+    this.stage.RemoveChild(this.batchBulletContainer);
+    this.stage.RemoveChild(this.batchEnemy1Container);
+    this.stage.RemoveChild(this.batchEnemy2Container);
+    this.stage.RemoveChild(this.batchEnemy3Container);
   }
 }

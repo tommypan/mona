@@ -36,12 +36,11 @@ Choose one of the following options:
   * 事件冒泡，动画，调试，碰撞支持
   * 批量渲染支持
   * 自定义后处理效果支持
-  
+  * 静态物件渲染优化
+    
 ## Future Features
 
   * 物件多Shader渲染
-  * 静态物件渲染优化
-
 
 ## Browser support
 

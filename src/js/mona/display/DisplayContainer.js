@@ -10,7 +10,7 @@ export class DisplayContainer extends DisplayObject
   {
     super(width,height);
     this._children = new Array();
-
+    this.renderReady = true;
   }
 
   AddChild(child)
@@ -22,10 +22,29 @@ export class DisplayContainer extends DisplayObject
     }
 
     child._parent = this;
-    child._root = this.root;
     this._children.push(child);
+    this.root = this.root;
     child._vFillVertices();
     this.MarkasDirty();
+  }
+
+  get root() {
+    return this._root;
+  }
+
+  set root(value)
+  {
+    this._root = value;
+
+    if(!this.Children)
+    {
+      return;
+    }
+
+    for ( let i = 0; i <this.Children.length; i++)
+    {
+        this.Children[i].root = value;
+    }
   }
 
   RemoveChild(child)
@@ -38,7 +57,7 @@ export class DisplayContainer extends DisplayObject
 
     this.MarkasDirty();
     child._parent = false;
-    child._root = false;
+    child.root = false;
     this._children.splice( this._children.indexOf( child ), 1 );
   }
 
@@ -50,19 +69,23 @@ export class DisplayContainer extends DisplayObject
 
   Render(deltaTime)
   {
-    this.RenderToTargetTexture();
-
-    for ( let i = 0; i <this.Children.length; i++)
+    if (this.CheckDirtyBitmap())
     {
-      if(this.Children[i].renderReady)
+      this.RenderToTargetTexture();
+
+      for ( let i = 0; i <this.Children.length; i++)
       {
-        RenderSupport.PushMatrix();
-        RenderSupport.TransformMatrix(this.Children[i]);
-        this.Children[i].Render(deltaTime);
-        RenderSupport.PopMatrix();
+        if(this.Children[i].renderReady)
+        {
+          RenderSupport.PushMatrix();
+          RenderSupport.TransformMatrix(this.Children[i]);
+          this.Children[i].Render(deltaTime);
+          RenderSupport.PopMatrix();
+        }
       }
     }
 
+    this.isDirty = false;
     this.FinishRenderTargetTexture();
   }
 

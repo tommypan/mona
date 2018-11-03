@@ -26,7 +26,7 @@ export class DisplayObject extends InputEventListener{
     this.defaultWidth = 1;
     this.defaultHeight = 1;
     this._parent = false; //readonly
-    this._root = false;//readonly
+    this.root = false;//readonly
     this._transform = new Transform();
     this.localPosition = new Vector2(0,0);
     this.localRotation = 0;
@@ -41,6 +41,7 @@ export class DisplayObject extends InputEventListener{
     this._needRenderTarget = false;//后处理效果支持.设置来渲染到纹理后，此节点和子节点都会统一渲染到纹理，除非跳出此树
     this._renderTexture = new RenderTexture(false,false);
     this._customPostRender = false;//外部传入指定后处理类
+    this._cacheAsBitmap = false;
   }
 
   //子节点坐标系的点转换到世界坐标
@@ -180,7 +181,33 @@ export class DisplayObject extends InputEventListener{
     }
   }
 
-  //此渲染树的跟.不一定是stage
+  /**
+   * 缓存为位图，可以通过此技术，可以将此节点和其子节点缓存为位图，节约drawcall
+   * 需要注意的是，这里会增大内存，这里尽量对不容易变化的节点设置，否则得不偿失
+   */
+  set cacheAsBitmap(value)
+  {
+
+    if(value && typeof (this._customPostRender) != "BasePostEffect")
+    {
+      this.customPostRender = new BasePostEffect();
+    }
+    else
+    {
+      this.customPostRender = false;
+    }
+    this._cacheAsBitmap = value;
+  }
+
+  get cacheAsBitmap()
+  {
+    return this._cacheAsBitmap;
+  }
+
+  /**
+   * 此渲染树的跟.不一定是stage
+   * @returns {DisplayObject}
+   */
   get top()
   {
     var result = this;
@@ -202,6 +229,7 @@ export class DisplayObject extends InputEventListener{
     }
     this._width = value;
     this._vFillVertices();
+    this.MarkasDirty();
   }
 
   get height() {
@@ -215,6 +243,7 @@ export class DisplayObject extends InputEventListener{
     }
     this._height = value;
     this._vFillVertices();
+    this.MarkasDirty();
   }
 
   get parent() {
@@ -225,6 +254,11 @@ export class DisplayObject extends InputEventListener{
     return this._root;
   }
 
+  set root(value)
+  {
+    this._root = value;
+    this.MarkasDirty();
+  }
   get TransformMatrix()
   {
     return this._transform.transformMatrix;
@@ -272,11 +306,16 @@ export class DisplayObject extends InputEventListener{
 
   MarkasDirty()
   {
-    if(this._root)
-    {
-      this._root.isDirty = true;
-    }
+    this.isDirty = true;
+  }
 
+  CheckDirtyBitmap()
+  {
+    if(this.cacheAsBitmap && !this.isDirty)
+    {
+      return false;
+    }
+    return true;
   }
 
   //vitual private
@@ -323,13 +362,16 @@ export class DisplayObject extends InputEventListener{
 
     this.PreRender(deltaTime);
 
-    this.RenderToTargetTexture();
+    if (this.CheckDirtyBitmap())
+    {
+      this.RenderToTargetTexture();
 
-    this._vFillBuffer();
+      this._vFillBuffer();
 
-    this._vFillUniform();
+      this._vFillUniform();
 
-    Status.AddDrawCount();
+      Status.AddDrawCount();
+    }
 
     this.PostRender(deltaTime);
   }
@@ -337,6 +379,7 @@ export class DisplayObject extends InputEventListener{
   PostRender(deltaTime)
   {
     this._vPostRender(deltaTime);
+    this.isDirty = false;
   }
 
   _vPostRender(deltaTime)
@@ -381,14 +424,22 @@ export class DisplayObject extends InputEventListener{
 
     this._renderTexture.glFBOTexture = fboTexture;
     this._renderTexture.bounds = bound;
-    RenderSupport.PushFBO(fbo);
+
+    if(!this.cacheAsBitmap)
+    {
+      RenderSupport.PushFBO(fbo);
+    }
   }
 
   FinishRenderTargetTexture()
   {
     if(this._needRenderTarget)
     {
-      RenderSupport.PopFBO();
+      if(!this.cacheAsBitmap)
+      {
+        RenderSupport.PopFBO();
+      }
+
       if(RenderSupport.fbo)
       {
         this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, RenderSupport.fbo);
@@ -396,6 +447,13 @@ export class DisplayObject extends InputEventListener{
         this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, null);
       }
       this._customPostRender.RenderImage(this.parent,this._renderTexture);
+
+      //不cache就清除
+      if(!this.cacheAsBitmap)
+      {
+        this._renderTexture.glFBOTexture = false;
+        this._renderTexture.bounds = false;
+      }
     }
   }
  }

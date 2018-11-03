@@ -8,7 +8,7 @@ export class Stage extends  DisplayContainer{
   constructor(){
     var canvas = document.getElementById('canvas');
     super(canvas.width,canvas.height);
-    this._root = this;
+    this.root = this;
 
     new GLSeetting(this.gl,canvas.width,canvas.height);
     }
