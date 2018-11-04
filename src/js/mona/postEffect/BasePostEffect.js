@@ -82,7 +82,6 @@ export class BasePostEffect {
 
     shader.SetTexture(source.glFBOTexture,"u_Sample",0,true);
 
-    //绘制矩形
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);
+    shader.Draw(n);
   }
 }

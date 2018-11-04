@@ -37,10 +37,11 @@ Choose one of the following options:
   * 批量渲染支持
   * 自定义后处理效果支持
   * 静态物件缓存位图渲染优化
-    
-## Future Features
-
   * subShader渲染支持
+  * shader预编译支持   
+## Future Features
+  * 工程启动优化
+
 
 ## Browser support
 

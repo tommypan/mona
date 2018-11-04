@@ -1,98 +1,123 @@
 import {webglUtils} from "../utils/webglUtils.js";
 
 export class Shader {
+
+  static WarmupAllShaders(array,callback,callObj)
+  {
+    var canvas = document.getElementById('canvas');
+    //获取绘制二维上下文
+    Shader.gl = canvas.getContext('webgl');
+    if (!Shader.gl) {
+      console.log("webgl init Failed");
+      return;
+    }
+
+    Shader.needWarnArray = array;
+    Shader.callback = callback;
+    Shader.callObj = callObj;
+
+    var vsFile = Shader.needWarnArray[0].vsFile;
+    var fsFile = Shader.needWarnArray[0].fsFile;
+    Shader.initShader(Shader.gl,vsFile,fsFile,false,Shader.warmUpNext);
+  }
+
+  static warmUpNext(warmProgram)
+  {
+    var key = Shader.needWarnArray[0].vsFile;
+    Shader.warmUpList[key] = warmProgram;
+
+
+    Shader.needWarnArray.splice( 0, 1 );
+    if (Shader.needWarnArray.length > 0)
+    {
+      var vsFile = Shader.needWarnArray[0].vsFile;
+      var fsFile = Shader.needWarnArray[0].fsFile;
+      Shader.initShader(Shader.gl,vsFile,fsFile,false,Shader.warmUpNext);
+    }
+    else
+    {
+      Shader.callback.call(Shader.callObj);
+    }
+
+  }
+
+  static initShader(gl, vsFile, fsFile,obj, callBack)
+  {
+    var vs = null;
+    var fs = null;
+    var onShaderLoaded = function () {
+      if (vs && fs)
+      {
+        if(obj)
+        {
+          obj._shaderProgram = webglUtils.InitShader(gl,vs,fs);
+          callBack(obj._shaderProgram);
+          Shader.warmUpList[vsFile] = obj._shaderProgram;
+        }
+        else
+        {
+          var shaderProgram = webglUtils.InitShader(gl,vs,fs);
+          callBack(shaderProgram);
+        }
+
+      }
+    }
+
+    Shader.loadShaderFromFile(vsFile,function (vsContent) {
+      vs = vsContent;
+      onShaderLoaded();
+    })
+
+    Shader.loadShaderFromFile(fsFile,function (fsContent) {
+      fs = fsContent;
+      onShaderLoaded();
+    })
+  }
+
+  static loadShaderFromFile(fileName,onLoadedFile)
+  {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+      if (request.readyState == 4 && request.status == 200)
+      {
+        onLoadedFile(request.responseText);
+      }
+    }
+
+    request.open("GET",fileName,true);
+    request.send();
+  }
+
+
+
   constructor(gl,vetextPath, fragmentPath,callBack,prepareContent) {
     this.gl = gl;
     this._shaderProgram = false;
 
+    if(Shader.warmUpList[vetextPath])
+    {
+      this._shaderProgram = Shader.warmUpList[vetextPath];
+      if(callBack)
+      {
+        callBack(this._shaderProgram);
+      }
+      return;
+    }
+
     if(prepareContent)
     {
       this._shaderProgram = webglUtils.InitShader(gl,vetextPath,fragmentPath);
-    }else
+      Shader.warmUpList[vetextPath] = this._shaderProgram;
+    }
+    else
     {
-      this.vetextPath = vetextPath;
-      this.fragmentPath = fragmentPath;
-      this.initShader(gl, vetextPath, fragmentPath, callBack);
+        this.vetextPath = vetextPath;
+        this.fragmentPath = fragmentPath;
+        Shader.initShader(gl, vetextPath, fragmentPath,this, callBack);
     }
 
   }
 
-
-  initShader(gl, vsFile, fsFile, callBack)
-  {
-    var vs = null;
-    var fs = null;
-    var that = this;
-    var onShaderLoaded = function () {
-      if (vs && fs)
-      {
-        that._shaderProgram = webglUtils.InitShader(gl,vs,fs);
-        callBack(that._shaderProgram);
-      }
-    }
-
-    this.loadShaderFromFile(vsFile,function (vsContent) {
-      vs = vsContent;
-      onShaderLoaded();
-    })
-
-    this.loadShaderFromFile(fsFile,function (fsContent) {
-      fs = fsContent;
-      onShaderLoaded();
-    })
-  }
-
-  loadShaderFromFile(fileName,onLoadedFile)
-  {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-      if (request.readyState == 4 && request.status == 200)
-      {
-        onLoadedFile(request.responseText);
-      }
-    }
-
-    request.open("GET",fileName,true);
-    request.send();
-  }
-
-  initShader(gl, vsFile, fsFile, callBack)
-  {
-    var vs = null;
-    var fs = null;
-    var that = this;
-    var onShaderLoaded = function () {
-      if (vs && fs)
-      {
-        that._shaderProgram = webglUtils.InitShader(gl,vs,fs);
-        callBack(that._shaderProgram);
-      }
-    }
-
-    this.loadShaderFromFile(vsFile,function (vsContent) {
-      vs = vsContent;
-      onShaderLoaded();
-    })
-
-    this.loadShaderFromFile(fsFile,function (fsContent) {
-      fs = fsContent;
-      onShaderLoaded();
-    })
-  }
-
-  loadShaderFromFile(fileName,onLoadedFile)
-  {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-      if (request.readyState == 4 && request.status == 200)
-      {
-        onLoadedFile(request.responseText);
-      }
-    }
-
-    request.open("GET",fileName,true);
-    request.send();
-  }
 
   CreateBuffer(vertices)
   {
@@ -158,4 +183,11 @@ export class Shader {
     gl.uniformMatrix4fv(mvpMatrix, false, matrix);
   }
 
+  Draw(vertextNum)
+  {
+    let gl = this.gl;
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, vertextNum);
+  }
+
 }
+Shader.warmUpList = {};

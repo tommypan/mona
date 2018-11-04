@@ -136,7 +136,7 @@ export class BatchSprite extends DisplayContainer{
     this._shader.SetTexture(this._texture,"u_Sampler",0);
 
     //绘制矩形
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.vertextData.vertextNum);
+    this._shader.Draw(this.vertextData.vertextNum);
   }
 
 }

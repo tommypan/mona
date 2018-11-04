@@ -11,6 +11,7 @@ import {BatchSprite} from "../../mona/display/BatchSprite.js";
 import {Text} from "../../mona/text/Text.js";
 import {BasePostEffect} from "../../mona/postEffect/BasePostEffect.js";
 import {DisplayContainer} from "../../mona/display/DisplayContainer.js";
+import {Shader} from "../../mona/shader/Shader.js";
 
 class Enemy
 {
@@ -66,7 +67,9 @@ export class Wefly
     let engine = new mona();
     engine.Init();
     this.stage = engine.stage;
-    this.loadResource();
+    let shader1 = {"vsFile":"js/mona/shader/simpleTexture-vext.glsl","fsFile" :"js/mona/shader/simpleTexture-frag.glsl"};
+    let shader2 = {"vsFile":"js/mona/shader/text-vext.glsl","fsFile" :"js/mona/shader/text-frag.glsl"};
+    Shader.WarmupAllShaders([shader1,shader2],this.loadResource,this);
   }
 
   loadResource()
@@ -184,11 +187,13 @@ export class Wefly
     var game_pause = new Sprite(ResourceService.GetAssets("game_pause")[0].content);
     game_pause.localPosition = new Vector2(320,10);
     game_pause.addEventListener(this,EventDefine.MOUSE_EVENT_CLICK,this.onGamePause);
+    game_pause.AddSubShader(this,this.OnGamePauseSubShader);
     this.menuContainer.AddChild(game_pause);
     var game_resume = new Sprite(ResourceService.GetAssets("game_resume")[0].content);
     game_resume.localPosition = new Vector2(400,10);
     game_resume.addEventListener(this,EventDefine.MOUSE_EVENT_CLICK,this.onGameResume);
     this.menuContainer.AddChild(game_resume);
+
 
     this.stage.AddChild(this.menuContainer);
     this.menuContainer.cacheAsBitmap = true;
@@ -236,6 +241,11 @@ export class Wefly
   heroMove(eventData)
   {
     this.focusHero(eventData);
+  }
+
+  OnGamePauseSubShader(arg)
+  {
+    console.log("OnGamePauseSubShader");
   }
 
   updateLogic()

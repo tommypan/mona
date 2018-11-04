@@ -7,6 +7,7 @@ import {Bound} from "../utils/Bound.js";
 import {BasePostEffect} from "../postEffect/BasePostEffect.js";
 import {RenderTexture} from "../texture/RenderTexture.js";
 import {GLSeetting} from "../rendering/GLSeetting.js";
+import {Shader} from "../shader/Shader.js";
 
 //默认中心点为左上角
 //显示列表树基类
@@ -42,6 +43,8 @@ export class DisplayObject extends InputEventListener{
     this._renderTexture = new RenderTexture(false,false);
     this._customPostRender = false;//外部传入指定后处理类
     this._cacheAsBitmap = false;
+
+    this._subShaders = [];
   }
 
   //子节点坐标系的点转换到世界坐标
@@ -318,6 +321,40 @@ export class DisplayObject extends InputEventListener{
     return true;
   }
 
+  /**
+   * 添加subshader，用于合成一些特殊效果
+   * @param subShaderObj
+   * @param subShaderCallBack
+   * @constructor
+   */
+  AddSubShader(subShaderObj,subShaderCallBack)
+  {
+    if(this._subShaders.indexOf(subShaderCallBack) != -1)
+    {
+      return;
+    }
+
+    this._subShaders[this._subShaders.length] = subShaderObj;
+    this._subShaders[this._subShaders.length] = subShaderCallBack;
+  }
+
+  /**
+   * 移除subshader，用于合成一些特殊效果
+   * @param subShaderObj
+   * @param subShaderCallBack
+   * @constructor
+   */
+  RemoveShader(subShaderObj,subShaderCallBack)
+  {
+
+    if(this._subShaders.indexOf(subShaderCallBack) == -1)
+    {
+      return;
+    }
+
+    this._subShaders.splice( this._subShaders.indexOf( subShaderObj )-1, 2 );
+  }
+
   //vitual private
   //模型的顶点数据
   _vFillVertices ()
@@ -340,8 +377,7 @@ export class DisplayObject extends InputEventListener{
       return;
     }
 
-    let gl = this.gl;
-    gl.useProgram(this._shaderProgram);
+    this._shader.UseProgram();
 
     this._shader.SetMatrixUniform(RenderSupport.mvpMatrix,"mvpMatrix");
   }
@@ -370,6 +406,13 @@ export class DisplayObject extends InputEventListener{
       this._vFillUniform();
 
       Status.AddDrawCount();
+
+      for (let i = 0; i < this._subShaders.length;i = i+2)
+      {
+        var arg = {"gl":this.gl};
+        this._subShaders[i+1].call(this._subShaders[i],arg);
+        Status.AddDrawCount();
+      }
     }
 
     this.PostRender(deltaTime);
