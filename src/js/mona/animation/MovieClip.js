@@ -11,7 +11,7 @@ export class MovieClip extends Quad{
     this.makeGLTexture(bitmapDataList);
     this.playSpeed = 30;
     this._statCountDelta = 0;
-    this._shader = new Shader(this.gl,"js/mona/shader/simpleTexture-vext.glsl","js/mona/shader/simpleTexture-frag.glsl",this.onShaderInitComplete.bind(this));
+    this._shader = new Shader(this.gl,"/dist/mona/shader/simpleTexture-vext.glsl","/dist/mona/shader/simpleTexture-frag.glsl",this.onShaderInitComplete.bind(this));
   }
 
   onShaderInitComplete(shaderProgram)

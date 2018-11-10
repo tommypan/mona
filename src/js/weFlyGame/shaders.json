@@ -1,0 +1,6 @@
+[
+  "simpleTexture-frag.glsl",
+  "simpleTexture-vext.glsl",
+  "text-frag.glsl",
+  "text-vext.glsl"
+]

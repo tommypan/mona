@@ -8,7 +8,7 @@ export class BatchSprite extends DisplayContainer{
   constructor(texture,width,height){
     super(width,height);
     this.makeGLTexture(texture);
-    this._shader = new Shader(this.gl,"js/mona/shader/simpleTexture-vext.glsl","js/mona/shader/simpleTexture-frag.glsl",this.onShaderInitComplete.bind(this));
+    this._shader = new Shader(this.gl,"/dist/mona/shader/simpleTexture-vext.glsl","/dist/mona/shader/simpleTexture-frag.glsl",this.onShaderInitComplete.bind(this));
   }
 
   onShaderInitComplete(shaderProgram)

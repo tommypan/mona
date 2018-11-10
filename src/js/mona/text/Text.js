@@ -14,7 +14,7 @@ export class Text extends Quad{
     this._content = content;
     this.makeTextCanvas(100,26);
 
-    this._shader = new Shader(this.gl,"js/mona/shader/text-vext.glsl","js/mona/shader/text-frag.glsl",this.onShaderInitComplete.bind(this));
+    this._shader = new Shader(this.gl,"/dist/mona/shader/text-vext.glsl","/dist/mona/shader/text-frag.glsl",this.onShaderInitComplete.bind(this));
   }
 
   onShaderInitComplete(shaderProgram)

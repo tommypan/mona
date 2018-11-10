@@ -1,0 +1,31 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="../dist/css/main.css">
+</head>
+
+<body>
+  <canvas id="canvas" width="480" height="600" style="float:left"></canvas>
+  <div style="position:absolute" id="fps">fps</div>
+  <div style="position:absolute;top:25px;" id="drawcall">drawcall</div>
+  <script src="./esl-2.1.6.min.js"></script>
+  <script>
+    require.config({
+      baseUrl: location.origin + '/dist/'
+    });
+    require(['mona.min'], function() {
+      require(['weFlyGame.min'])
+    });
+  </script>
+</body>
+
+</html>

@@ -67,8 +67,12 @@ export class Wefly
     let engine = new mona();
     engine.Init();
     this.stage = engine.stage;
-    let shader1 = {"vsFile":"js/mona/shader/simpleTexture-vext.glsl","fsFile" :"js/mona/shader/simpleTexture-frag.glsl"};
-    let shader2 = {"vsFile":"js/mona/shader/text-vext.glsl","fsFile" :"js/mona/shader/text-frag.glsl"};
+    let shader1 = {"vsFile":"/dist/mona/shader/simpleTexture-vext.glsl","fsFile" :"/dist/mona/shader/simpleTexture-frag.glsl"};
+    let shader2 = {"vsFile":"/dist/mona/shader/text-vext.glsl","fsFile" :"/dist/mona/shader/text-frag.glsl"};
+    // let shaders = require('../shaders.json');
+
+    debugger
+
     Shader.WarmupAllShaders([shader1,shader2],this.loadResource,this);
   }
 
