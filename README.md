@@ -10,9 +10,9 @@
 
 5. Run `cnpm i -g tcs`.it will install static web server
 
-6. Run 'npm run dev'
+6. Run `npm run dev`
 
-7. Run 'tcs'
+7. Run `tcs`
 
 8. visit 'http://localhost:8080/examples/index.html' in browser.and have fun 
 
