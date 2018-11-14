@@ -71,7 +71,7 @@ export class Wefly
     let shader2 = {"vsFile":"/dist/mona/shader/text-vext.glsl","fsFile" :"/dist/mona/shader/text-frag.glsl"};
     // let shaders = require('../shaders.json');
 
-    debugger
+    //debugger
 
     Shader.WarmupAllShaders([shader1,shader2],this.loadResource,this);
   }

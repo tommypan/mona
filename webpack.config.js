@@ -11,6 +11,7 @@ const buildEnv = process.env.BUILD_ENV || 'development';
 const cwd = process.cwd();
 const srcDir = path.join(cwd, 'src');
 const distDir = path.join(cwd, 'dist');
+const examplesDir = path.join(cwd, 'examples');
 const publicPath = './assets/';
 const entries = {
   mona: './src/js/mona/mona.js',
@@ -18,6 +19,15 @@ const entries = {
 
 if (buildEnv === 'development') {
   entries.weFlyGame = './src/js/weFlyGame/main.js'
+}
+const copyPlugins = [
+  // {from: './js/compiled/', to: path.join(distDir, 'js'), toType: 'dir'},
+  // {from: './html/', to: path.join(distDir, 'html'), toType: 'dir'},
+  // {from: './images/', to: path.join(distDir, 'images'), toType: 'dir'}
+  {from: './js/mona/shader/', to: path.join(distDir, 'mona/shader'), toType: 'dir'}
+]
+if (buildEnv === 'development') {
+  //copyPlugins.push({from: "../dist", to: examplesDir, toType: 'dir'});
 }
 
 const config = {
@@ -76,12 +86,14 @@ const config = {
     //   name: 'common',
     //   minChunks: 3
     // }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin(
+      //[
         // {from: './js/compiled/', to: path.join(distDir, 'js'), toType: 'dir'},
         // {from: './html/', to: path.join(distDir, 'html'), toType: 'dir'},
         // {from: './images/', to: path.join(distDir, 'images'), toType: 'dir'}
-        {from: './js/mona/shader/', to: path.join(distDir, 'mona/shader'), toType: 'dir'}
-      ],
+        //{from: './js/mona/shader/', to: path.join(distDir, 'mona/shader'), toType: 'dir'}
+      //]
+      copyPlugins,
       {
         context: srcDir
       }

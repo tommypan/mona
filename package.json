@@ -26,7 +26,7 @@
     "test": "gulp archive && mocha --require babel-core/register --reporter spec --timeout 5000"
   },
   "version": "0.0.1",
-  "description": "xx",
+  "description": "mona is a powerful render engien,which based on webgl",
   "repository": {
     "type": "git",
     "url": "https://github.com/h5bp/html5-boilerplate.git"
